@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.fabiosomaglia</groupId>
-	<artifactId>backend</artifactId>
+	<artifactId>typing-test</artifactId>
 	<version>0.0.1</version>
-	<name>backend</name>
-	<description>Demo project for Spring Boot</description>
+	<name>Typing Test</name>
+	<description>Typing Test project with Angular and Spring Boot</description>
 
 	<properties>
 		<java.version>11</java.version>
@@ -49,6 +49,11 @@
 					<artifactId>junit-vintage-engine</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>com.github.dhiraj072</groupId>
+			<artifactId>random-word-generator</artifactId>
+			<version>1.1.0</version>
 		</dependency>
 	</dependencies>
 
