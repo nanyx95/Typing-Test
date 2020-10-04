@@ -2,7 +2,7 @@
 <div class="main-container">
   <div class="typed-words-container">
     <div class="whitespace-no-wrap">
-      <!--<span *ngFor="let word of words">{{ word.word }}</span>-->
+      <span *ngFor="let typedWord of typedWords" [ngClass]="{'wrong-word': !typedWord.isCorrect}">{{ typedWord.word }}</span>
       <div #testInput id="test-input" tabindex="1" contenteditable="true" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" (input)="onInput($event)" (keydown)="onKeyDown($event)" (mousedown)="onMouseDown($event)" (touchstart)="onTouchStart($event)"></div>
     </div>
   </div>

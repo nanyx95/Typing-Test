@@ -1,6 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Word} from '../../models/Word';
 import {WordsService} from '../../services/words.service';
+import {TypedWord} from '../../models/TypedWord';
 
 @Component({
   selector: 'app-input-box',
@@ -12,11 +13,13 @@ export class InputBoxComponent implements OnInit {
   @ViewChild('testInput') testInput: ElementRef;
 
   words: Word[];
+  typedWords: TypedWord[];
   currentWord: string = null;
 
   constructor(private wordsService: WordsService) { }
 
   ngOnInit(): void {
+    this.typedWords = [];
     // set input focus
     document.getElementById('test-input').focus();
     this.retrieveWords();
@@ -42,7 +45,13 @@ export class InputBoxComponent implements OnInit {
     if (event.code === KEY_CODE.ENTER || event.code === KEY_CODE.SPACE) {
         event.preventDefault();
         event.stopPropagation();
-
+        // add typed word inside typedWords array
+        if (inputValue !== '') {
+          const tw = new TypedWord();
+          tw.word = inputValue;
+          tw.isCorrect = inputValue === this.currentWord;
+          this.typedWords.push(tw);
+        }
         // remove first item of the words array
         this.words.shift();
         // set to null the current word

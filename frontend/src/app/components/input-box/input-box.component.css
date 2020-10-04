@@ -11,7 +11,7 @@
 
 .whitespace-no-wrap {
   display: flex;
-  width: 1%;
+
   height: 100%;
   float: right;
   white-space: nowrap;
@@ -20,7 +20,8 @@
 
 #test-input {
   height: 100%;
-  width: 100%;
+  padding-left: .25rem;
+  display: inline-block;
   font-size: 3rem;
   caret-color: black;
   background-color: yellow;
@@ -40,6 +41,10 @@ span {
   padding-right: .25rem;
 }
 
-span:first-of-type {
+.words-container > span:first-of-type {
   padding-left: 0;
+}
+
+.wrong-word {
+  background-color: red;
 }

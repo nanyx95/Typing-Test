@@ -27,7 +27,12 @@ public class JsonWordServiceImpl implements WordService {
 
 	@Override
 	public Word getRandomWord() {
-		return new Word(words.getWords()[new Random().nextInt(words.getWords().length)]);
+		Word word;
+		do {
+			word = new Word(words.getWords()[new Random().nextInt(words.getWords().length)]);
+		} while (word.getWord().contains(" ") || word.getWord().contains("-"));
+
+		return word;
 	}
 
 	@Override
