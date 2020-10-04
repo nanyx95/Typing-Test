@@ -1,0 +1,45 @@
+.main-container {
+  display: flex;
+  align-items: center;
+}
+
+.typed-words-container {
+  height: 55px;
+  width: 50%;
+  overflow: hidden;
+}
+
+.whitespace-no-wrap {
+  display: flex;
+  width: 1%;
+  height: 100%;
+  float: right;
+  white-space: nowrap;
+  text-align: right;
+}
+
+#test-input {
+  height: 100%;
+  width: 100%;
+  font-size: 3rem;
+  caret-color: black;
+  background-color: yellow;
+  outline: none;
+}
+
+.words-container {
+  overflow: hidden;
+  flex: none;
+  width: 50%;
+  height: 55px;
+}
+
+span {
+  font-size: 3rem;
+  padding-left: .25rem;
+  padding-right: .25rem;
+}
+
+span:first-of-type {
+  padding-left: 0;
+}

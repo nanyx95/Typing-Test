@@ -2,7 +2,7 @@ package com.fabiosomaglia.backend.controller;
 
 import com.fabiosomaglia.backend.bean.Word;
 import com.fabiosomaglia.backend.service.WordService;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,12 +14,15 @@ import java.util.List;
  * Created by Fabio Somaglia on 27/09/2020.
  */
 
-@RequestMapping("api/v1")
 @RestController
+@RequestMapping("api/v1")
 public class WordController {
 
-	@Autowired
-	private WordService wordService;
+	private final WordService wordService;
+
+	public WordController(@Qualifier("jsonWordServiceImpl") WordService wordService) {
+		this.wordService = wordService;
+	}
 
 	@GetMapping(path = "word")
 	public Word getWord() {

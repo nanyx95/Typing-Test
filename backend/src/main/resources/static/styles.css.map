@@ -1,1 +1,1 @@
-{"version":3,"sources":["src/styles.css"],"names":[],"mappings":"AAAA,8EAA8E","file":"styles.css","sourcesContent":["/* You can add global styles to this file, and also import other style files */\n"],"sourceRoot":"webpack:///"}
+{"version":3,"sources":["src/styles.css"],"names":[],"mappings":"AAAA,8EAA8E;AAC9E;EACE,UAAU;EACV,SAAS;AACX","file":"styles.css","sourcesContent":["/* You can add global styles to this file, and also import other style files */\nhtml, body {\n  padding: 0;\n  margin: 0;\n}\n"],"sourceRoot":"webpack:///"}

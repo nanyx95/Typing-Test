@@ -1,16 +1,25 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import { InputBoxComponent } from './components/input-box/input-box.component';
+import { TimerComponent } from './components/timer/timer.component';
+import { StatsComponent } from './components/stats/stats.component';
+import {WordsService} from './services/words.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    InputBoxComponent,
+    TimerComponent,
+    StatsComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [WordsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
