@@ -15,14 +15,19 @@ export class InputBoxComponent implements OnInit {
   words: Word[];
   typedWords: TypedWord[];
   currentWord: string = null;
+  flagWrongWord = false;
 
   constructor(private wordsService: WordsService) { }
 
   ngOnInit(): void {
     this.typedWords = [];
     // set input focus
-    document.getElementById('test-input').focus();
+    this.setFocus();
     this.retrieveWords();
+  }
+
+  setFocus(): void {
+    document.getElementById('test-input').focus();
   }
 
   private retrieveWord(): void {
@@ -58,6 +63,8 @@ export class InputBoxComponent implements OnInit {
         this.currentWord = null;
         // clear input value
         (event.target as HTMLElement).textContent = '';
+        // set the incorrectness of the word to default
+        this.flagWrongWord = false;
 
         this.retrieveWord();
     } else if (event.code === KEY_CODE.BACKSPACE) {
@@ -97,7 +104,14 @@ export class InputBoxComponent implements OnInit {
     if (key === this.words[0].word.charAt(0)) {
       if (inputValue === this.currentWord.substr(0, inputValue.length)) {
         this.words[0].word = this.words[0].word.substring(1);
+        this.flagWrongWord = false;
+      } else {
+        this.flagWrongWord = true;
       }
+    } else if (inputEvent.inputType === 'deleteContentBackward' && inputValue === this.currentWord.substr(0, inputValue.length)) {
+      this.flagWrongWord = false;
+    } else {
+      this.flagWrongWord = true;
     }
   }
 
@@ -106,7 +120,7 @@ export class InputBoxComponent implements OnInit {
    * @param event the click to ignore
    */
   onMouseDown(event: MouseEvent): void {
-    document.getElementById('test-input').focus();
+    this.setFocus();
     this.setCaretPosition('test-input', (event.target as HTMLElement).textContent.length);
     event.preventDefault();
   }
@@ -116,7 +130,7 @@ export class InputBoxComponent implements OnInit {
    * @param event the tap to ignore
    */
   onTouchStart(event: TouchEvent): void {
-    document.getElementById('test-input').focus();
+    this.setFocus();
     this.setCaretPosition('test-input', (event.target as HTMLElement).textContent.length);
     event.preventDefault();
   }

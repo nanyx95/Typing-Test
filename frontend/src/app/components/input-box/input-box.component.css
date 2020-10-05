@@ -11,7 +11,6 @@
 
 .whitespace-no-wrap {
   display: flex;
-
   height: 100%;
   float: right;
   white-space: nowrap;
@@ -22,9 +21,9 @@
   height: 100%;
   padding-left: .25rem;
   display: inline-block;
+  color: #5A67D8;
   font-size: 3rem;
   caret-color: black;
-  background-color: yellow;
   outline: none;
 }
 
@@ -35,10 +34,17 @@
   height: 55px;
 }
 
-span {
+.words-container > span {
   font-size: 3rem;
   padding-left: .25rem;
   padding-right: .25rem;
+}
+
+.whitespace-no-wrap > span {
+  font-size: 3rem;
+  padding-left: .25rem;
+  padding-right: .25rem;
+  opacity: 35%;
 }
 
 .words-container > span:first-of-type {
@@ -46,5 +52,5 @@ span {
 }
 
 .wrong-word {
-  background-color: red;
+  text-decoration: line-through;
 }
