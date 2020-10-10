@@ -2,6 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Word} from '../../models/Word';
 import {WordsService} from '../../services/words.service';
 import {TypedWord} from '../../models/TypedWord';
+import {InteractionService} from '../../services/interaction.service';
 
 @Component({
   selector: 'app-input-box',
@@ -16,10 +17,19 @@ export class InputBoxComponent implements OnInit {
   typedWords: TypedWord[];
   currentWord: string = null;
   flagWrongWord = false;
+  isTimerOn: boolean;
+  correctWordsCounter: number;
+  correctCharsCounter: number;
 
-  constructor(private wordsService: WordsService) { }
+  constructor(private wordsService: WordsService, private interactionService: InteractionService) { }
 
   ngOnInit(): void {
+    this.interactionService.getTimerStatus()
+      .subscribe(status => this.isTimerOn = status);
+    this.interactionService.getCorrectWords()
+      .subscribe(words => this.correctWordsCounter = words);
+    this.interactionService.getCorrectChars()
+      .subscribe(chars => this.correctCharsCounter = chars);
     this.typedWords = [];
     // set input focus
     this.setFocus();
@@ -56,6 +66,13 @@ export class InputBoxComponent implements OnInit {
           tw.word = inputValue;
           tw.isCorrect = inputValue === this.currentWord;
           this.typedWords.push(tw);
+          if (tw.isCorrect === true) {
+            this.correctWordsCounter++;
+            this.interactionService.setCorrectWords(this.correctWordsCounter);
+            this.correctCharsCounter = this.correctCharsCounter + tw.word.length;
+            this.interactionService.setCorrectChars(this.correctCharsCounter);
+          }
+          this.interactionService.setTotalWords(this.typedWords.length);
         }
         // remove first item of the words array
         this.words.shift();
@@ -88,6 +105,10 @@ export class InputBoxComponent implements OnInit {
     // set the new current word
     if (this.currentWord === null) {
       this.currentWord = this.words[0].word;
+    }
+    // start the timer
+    if (this.isTimerOn === false) {
+      this.interactionService.setTimerStatus(true);
     }
     this.checkCharacter(event);
   }

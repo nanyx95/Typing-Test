@@ -1,0 +1,7 @@
+.container {
+  display: flex;
+}
+
+.container > p {
+  margin: 2rem;
+}
