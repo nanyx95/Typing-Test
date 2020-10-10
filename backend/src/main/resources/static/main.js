@@ -408,6 +408,7 @@ class InputBoxComponent {
                 tw.word = inputValue;
                 tw.isCorrect = inputValue === this.currentWord;
                 this.typedWords.push(tw);
+                // share data with stats component
                 if (tw.isCorrect === true) {
                     this.correctWordsCounter++;
                     this.interactionService.setCorrectWords(this.correctWordsCounter);
@@ -461,19 +462,16 @@ class InputBoxComponent {
      */
     checkCharacter(event) {
         const inputEvent = event;
-        const key = inputEvent.data;
+        const inputType = inputEvent.inputType;
         const inputValue = event.target.textContent;
-        if (key === this.words[0].word.charAt(0)) {
-            if (inputValue === this.currentWord.substr(0, inputValue.length)) {
+        if (inputValue === this.currentWord.substr(0, inputValue.length)) {
+            if (inputType !== 'deleteContentBackward') {
                 this.words[0].word = this.words[0].word.substring(1);
                 this.flagWrongWord = false;
             }
-            else {
-                this.flagWrongWord = true;
+            else if (inputType === 'deleteContentBackward') {
+                this.flagWrongWord = false;
             }
-        }
-        else if (inputEvent.inputType === 'deleteContentBackward' && inputValue === this.currentWord.substr(0, inputValue.length)) {
-            this.flagWrongWord = false;
         }
         else {
             this.flagWrongWord = true;
