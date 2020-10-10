@@ -38,6 +38,7 @@ export class InputBoxComponent implements OnInit {
 
   setFocus(): void {
     document.getElementById('test-input').focus();
+    this.setCaretPosition('test-input', null);
   }
 
   private retrieveWord(): void {
@@ -58,23 +59,22 @@ export class InputBoxComponent implements OnInit {
   onKeyDown(event: KeyboardEvent): void {
     const inputValue = (event.target as HTMLElement).textContent;
     if (event.code === KEY_CODE.ENTER || event.code === KEY_CODE.SPACE) {
-        event.preventDefault();
-        event.stopPropagation();
-        // add typed word inside typedWords array
-        if (inputValue !== '') {
-          const tw = new TypedWord();
-          tw.word = inputValue;
-          tw.isCorrect = inputValue === this.currentWord;
-          this.typedWords.push(tw);
-          // share data with stats component
-          if (tw.isCorrect === true) {
-            this.correctWordsCounter++;
-            this.interactionService.setCorrectWords(this.correctWordsCounter);
-            this.correctCharsCounter = this.correctCharsCounter + tw.word.length;
-            this.interactionService.setCorrectChars(this.correctCharsCounter);
-          }
-          this.interactionService.setTotalWords(this.typedWords.length);
+      event.preventDefault();
+      event.stopPropagation();
+      // add typed word inside typedWords array
+      if (inputValue !== '') {
+        const tw = new TypedWord();
+        tw.word = inputValue;
+        tw.isCorrect = inputValue === this.currentWord;
+        this.typedWords.push(tw);
+        // share data with stats component
+        if (tw.isCorrect === true) {
+          this.correctWordsCounter++;
+          this.interactionService.setCorrectWords(this.correctWordsCounter);
+          this.correctCharsCounter = this.correctCharsCounter + tw.word.length;
+          this.interactionService.setCorrectChars(this.correctCharsCounter);
         }
+        this.interactionService.setTotalWords(this.typedWords.length);
         // remove first item of the words array
         this.words.shift();
         // set to null the current word
@@ -85,10 +85,11 @@ export class InputBoxComponent implements OnInit {
         this.flagWrongWord = false;
 
         this.retrieveWord();
+      }
     } else if (event.code === KEY_CODE.BACKSPACE) {
-        if (inputValue === this.currentWord.substr(0, inputValue.length)) {
-          this.words[0].word = inputValue.charAt(inputValue.length - 1).concat(this.words[0].word);
-        }
+      if (inputValue === this.currentWord.substr(0, inputValue.length)) {
+        this.words[0].word = inputValue.charAt(inputValue.length - 1).concat(this.words[0].word);
+      }
     } else if (event.code === KEY_CODE.ARROW_UP
       || event.code === KEY_CODE.ARROW_DOWN
       || event.code === KEY_CODE.ARROW_LEFT
@@ -136,12 +137,18 @@ export class InputBoxComponent implements OnInit {
   }
 
   /**
+   * Set focus on .main-container click
+   */
+  onMainContainerClick(): void {
+    this.setFocus();
+  }
+
+  /**
    * Ignore the mouse click
    * @param event the click to ignore
    */
   onMouseDown(event: MouseEvent): void {
     this.setFocus();
-    this.setCaretPosition('test-input', (event.target as HTMLElement).textContent.length);
     event.preventDefault();
   }
 
@@ -151,7 +158,6 @@ export class InputBoxComponent implements OnInit {
    */
   onTouchStart(event: TouchEvent): void {
     this.setFocus();
-    this.setCaretPosition('test-input', (event.target as HTMLElement).textContent.length);
     event.preventDefault();
   }
 
@@ -161,6 +167,9 @@ export class InputBoxComponent implements OnInit {
    * @param caretPos the position of the caret
    */
   setCaretPosition(elemId: string, caretPos: number): void {
+    if (caretPos === null) {
+      caretPos = document.getElementById(elemId).textContent.length;
+    }
     const el = document.getElementById(elemId);
     const range = document.createRange();
     const sel = window.getSelection();

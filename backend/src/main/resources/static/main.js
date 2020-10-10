@@ -383,6 +383,7 @@ class InputBoxComponent {
     }
     setFocus() {
         document.getElementById('test-input').focus();
+        this.setCaretPosition('test-input', null);
     }
     retrieveWord() {
         this.wordsService.getWord().subscribe(word => this.words.push(word));
@@ -416,16 +417,16 @@ class InputBoxComponent {
                     this.interactionService.setCorrectChars(this.correctCharsCounter);
                 }
                 this.interactionService.setTotalWords(this.typedWords.length);
+                // remove first item of the words array
+                this.words.shift();
+                // set to null the current word
+                this.currentWord = null;
+                // clear input value
+                event.target.textContent = '';
+                // set the incorrectness of the word to default
+                this.flagWrongWord = false;
+                this.retrieveWord();
             }
-            // remove first item of the words array
-            this.words.shift();
-            // set to null the current word
-            this.currentWord = null;
-            // clear input value
-            event.target.textContent = '';
-            // set the incorrectness of the word to default
-            this.flagWrongWord = false;
-            this.retrieveWord();
         }
         else if (event.code === KEY_CODE.BACKSPACE) {
             if (inputValue === this.currentWord.substr(0, inputValue.length)) {
@@ -478,12 +479,17 @@ class InputBoxComponent {
         }
     }
     /**
+     * Set focus on .main-container click
+     */
+    onMainContainerClick() {
+        this.setFocus();
+    }
+    /**
      * Ignore the mouse click
      * @param event the click to ignore
      */
     onMouseDown(event) {
         this.setFocus();
-        this.setCaretPosition('test-input', event.target.textContent.length);
         event.preventDefault();
     }
     /**
@@ -492,7 +498,6 @@ class InputBoxComponent {
      */
     onTouchStart(event) {
         this.setFocus();
-        this.setCaretPosition('test-input', event.target.textContent.length);
         event.preventDefault();
     }
     /**
@@ -501,6 +506,9 @@ class InputBoxComponent {
      * @param caretPos the position of the caret
      */
     setCaretPosition(elemId, caretPos) {
+        if (caretPos === null) {
+            caretPos = document.getElementById(elemId).textContent.length;
+        }
         const el = document.getElementById(elemId);
         const range = document.createRange();
         const sel = window.getSelection();
@@ -518,8 +526,9 @@ InputBoxComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefine
     } if (rf & 2) {
         var _t;
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵloadQuery"]()) && (ctx.testInput = _t.first);
-    } }, decls: 8, vars: 5, consts: [[1, "main-container"], [1, "typed-words-container"], [1, "whitespace-no-wrap"], [3, "ngClass", 4, "ngFor", "ngForOf"], ["id", "test-input", "tabindex", "1", "contenteditable", "true", "autocapitalize", "off", "autocomplete", "off", "autocorrect", "off", "spellcheck", "false", 3, "ngClass", "input", "keydown", "mousedown", "touchstart"], ["testInput", ""], [1, "words-container"], [4, "ngFor", "ngForOf"], [3, "ngClass"]], template: function InputBoxComponent_Template(rf, ctx) { if (rf & 1) {
+    } }, decls: 8, vars: 5, consts: [[1, "main-container", 3, "click"], [1, "typed-words-container"], [1, "whitespace-no-wrap"], [3, "ngClass", 4, "ngFor", "ngForOf"], ["id", "test-input", "tabindex", "1", "contenteditable", "true", "autocapitalize", "off", "autocomplete", "off", "autocorrect", "off", "spellcheck", "false", 3, "ngClass", "input", "keydown", "mousedown", "touchstart"], ["testInput", ""], [1, "words-container"], [4, "ngFor", "ngForOf"], [3, "ngClass"]], template: function InputBoxComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function InputBoxComponent_Template_div_click_0_listener() { return ctx.onMainContainerClick(); });
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "div", 2);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](3, InputBoxComponent_span_3_Template, 2, 4, "span", 3);
