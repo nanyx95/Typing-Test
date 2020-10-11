@@ -1,5 +1,14 @@
-<div class="container">
-  <p>WPM {{ correctWords }}</p>
-  <p>CPM {{ correctChars }}</p>
-  <p>Accuracy {{ accuracy }}%</p>
+<div class="stats-container">
+  <div class="stat-wrapper">
+    <p class="stat">{{ correctWords }}</p>
+    <p class="stat-label">words/min</p>
+  </div>
+  <div class="stat-wrapper">
+    <p class="stat">{{ correctChars }}</p>
+    <p class="stat-label">chars/min</p>
+  </div>
+  <div class="stat-wrapper">
+    <p class="stat">{{ accuracy }}</p>
+    <p class="stat-label">% accuracy</p>
+  </div>
 </div>

@@ -1,5 +1,38 @@
-.stats-container {
+.content-wrapper {
+  width: 100%;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.header {
   display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.header > h1 {
+  font-size: 1.25rem;
+  font-weight: 100;
+  letter-spacing: .1rem;
+  margin-bottom: .5rem;
+  text-transform: uppercase;
+}
+
+.header > h3 {
+  color: #5456E3;
+  font-size: 2.75rem;
+  font-weight: 800;
+  margin-top: .5rem;
+}
+
+.stats-wrapper {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-bottom: 2rem;
 }

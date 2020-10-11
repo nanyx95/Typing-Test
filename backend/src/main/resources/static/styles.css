@@ -4,9 +4,13 @@
 html, body {
   padding: 0;
   margin: 0;
+  height: 100%;
+  width: 100%;
 }
 * {
   font-family: 'Inter', sans-serif;
+  color: #1a202c;
+  background-color: #f7fafc;
 }
 
 
