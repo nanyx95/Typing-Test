@@ -21,9 +21,17 @@
   font-weight: 300;
   text-transform: uppercase;
   text-align: center;
+  white-space: nowrap;
   color: #4a5568;
 }
 
 p {
   margin: 0;
+}
+
+/* Extra Large */
+@media (min-width: 1280px) {
+  .stat {
+    font-size: 2.5rem;
+  }
 }

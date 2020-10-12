@@ -36,3 +36,31 @@
   justify-content: center;
   margin-bottom: 2rem;
 }
+
+/* Small */
+@media (min-width: 640px) {
+  .stats-wrapper {
+    flex-direction: row-reverse;
+  }
+}
+
+/* Medium */
+@media (min-width: 768px) {
+  .header > h3 {
+    font-size: 3.5rem;
+  }
+}
+
+/* Large */
+@media (min-width: 1024px) {
+  .header > h3 {
+    font-size: 4rem;
+  }
+}
+
+/* Extra Large */
+@media (min-width: 1280px) {
+  .header > h3 {
+    font-size: 4.5rem;
+  }
+}

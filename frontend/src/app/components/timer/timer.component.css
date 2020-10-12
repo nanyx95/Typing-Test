@@ -22,3 +22,21 @@
 p {
   margin: 0;
 }
+
+/* Small */
+@media (min-width: 640px) {
+  .timer-wrapper {
+    margin: 0 3rem 1rem 0;
+  }
+
+  .timer {
+    font-size: 3rem;
+  }
+}
+
+/* Extra Large */
+@media (min-width: 1280px) {
+  .timer {
+    font-size: 3.5rem;
+  }
+}
