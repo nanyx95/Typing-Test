@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {InteractionService} from '../../services/interaction.service';
+import {TimerStatus} from '../../models/TimerStatus';
 
 @Component({
   selector: 'app-timer',
@@ -16,7 +17,7 @@ export class TimerComponent implements OnInit {
   ngOnInit(): void {
     this.interactionService.getTimerStatus()
       .subscribe(status => {
-        if (status === true) {
+        if (status === TimerStatus.ON) {
           this.startTimer();
         }
       });
@@ -35,7 +36,7 @@ export class TimerComponent implements OnInit {
     }
     if (seconds === 0) {
       this.stopTimer();
-      this.interactionService.setTimerStatus(false);
+      this.interactionService.setTimerStatus(TimerStatus.OFF);
     }
   }
 

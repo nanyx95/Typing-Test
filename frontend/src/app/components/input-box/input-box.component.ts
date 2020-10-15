@@ -3,6 +3,7 @@ import {Word} from '../../models/Word';
 import {WordsService} from '../../services/words.service';
 import {TypedWord} from '../../models/TypedWord';
 import {InteractionService} from '../../services/interaction.service';
+import {TimerStatus} from '../../models/TimerStatus';
 
 @Component({
   selector: 'app-input-box',
@@ -17,7 +18,7 @@ export class InputBoxComponent implements OnInit {
   typedWords: TypedWord[];
   currentWord: string = null;
   flagWrongWord = false;
-  isTimerOn: boolean;
+  timerStatus: TimerStatus;
   correctWordsCounter: number;
   correctCharsCounter: number;
 
@@ -25,7 +26,13 @@ export class InputBoxComponent implements OnInit {
 
   ngOnInit(): void {
     this.interactionService.getTimerStatus()
-      .subscribe(status => this.isTimerOn = status);
+      .subscribe(status => {
+        this.timerStatus = status;
+        if (status === TimerStatus.OFF) {
+          // unfocus test-input
+          document.getElementById('test-input').blur();
+        }
+      });
     this.interactionService.getCorrectWords()
       .subscribe(words => this.correctWordsCounter = words);
     this.interactionService.getCorrectChars()
@@ -109,8 +116,8 @@ export class InputBoxComponent implements OnInit {
       this.currentWord = this.words[0].word;
     }
     // start the timer
-    if (this.isTimerOn === false) {
-      this.interactionService.setTimerStatus(true);
+    if (this.timerStatus === TimerStatus.DEFAULT || this.timerStatus === TimerStatus.OFF) {
+      this.interactionService.setTimerStatus(TimerStatus.ON);
     }
     this.checkCharacter(event);
   }

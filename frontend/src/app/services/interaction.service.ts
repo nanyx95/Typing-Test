@@ -1,23 +1,24 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
+import {TimerStatus} from '../models/TimerStatus';
 
 @Injectable({
   providedIn: 'root'
 })
 export class InteractionService {
 
-  private timerStatus = new BehaviorSubject<boolean>(false);
+  private timerStatus = new BehaviorSubject<TimerStatus>(TimerStatus.DEFAULT);
   private correctWords = new BehaviorSubject<number>(0);
   private correctChars = new BehaviorSubject<number>(0);
   private totalWords = new BehaviorSubject<number>(0);
 
   constructor() { }
 
-  setTimerStatus(status: boolean): void {
+  setTimerStatus(status: TimerStatus): void {
     this.timerStatus.next(status);
   }
 
-  getTimerStatus(): Observable<boolean> {
+  getTimerStatus(): Observable<TimerStatus> {
     return this.timerStatus.asObservable();
   }
 

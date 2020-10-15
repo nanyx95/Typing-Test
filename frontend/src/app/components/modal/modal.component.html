@@ -1,0 +1,19 @@
+<button id="open" (click)="onOpenButtonClick()">Open</button>
+<div id="modal-container" class="modal-container" [ngClass]="{'show': showModal}">
+  <div class="modal" [ngClass]="{'show': showModal}">
+    <div *ngIf="correctWords < 30; then thenBlock else elseBlock"></div>
+    <ng-template #thenBlock>
+      <h1>You're a Turtle.</h1>
+      <p>
+        Well... You type with the speed of {{ correctWords }} WPM ({{ correctChars }} CPM). Your accuracy was {{ accuracy }}%. It could be better!
+      </p>
+    </ng-template>
+    <ng-template #elseBlock>
+      <h1>You're a T-REX.</h1>
+      <p>
+        Nice! You type with the speed of {{ correctWords }} WPM ({{ correctChars }} CPM). Your accuracy was {{ accuracy }}%. Keep practicing!
+      </p>
+    </ng-template>
+    <button id="close" (click)="onCloseButtonClick()">Try again</button>
+  </div>
+</div>
