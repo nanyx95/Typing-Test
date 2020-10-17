@@ -19,16 +19,8 @@ export class StatsComponent implements OnInit {
       .subscribe(words => this.correctWords = words);
     this.interactionService.getCorrectChars()
       .subscribe(chars => this.correctChars = chars);
-    this.interactionService.getTotalWords()
-      .subscribe(totalWords => this.accuracyCalc(totalWords));
-  }
-
-  private accuracyCalc(totalWords: number): void {
-    if (totalWords === 0) {
-      this.accuracy = 0;
-    } else {
-      this.accuracy = Math.round((this.correctWords / totalWords) * 100);
-    }
+    this.interactionService.getAccuracy()
+      .subscribe(accuracy => this.accuracy = accuracy);
   }
 
 }

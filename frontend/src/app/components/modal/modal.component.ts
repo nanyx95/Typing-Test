@@ -21,22 +21,14 @@ export class ModalComponent implements OnInit {
       .subscribe(words => this.correctWords = words);
     this.interactionService.getCorrectChars()
       .subscribe(chars => this.correctChars = chars);
-    this.interactionService.getTotalWords()
-      .subscribe(totalWords => this.accuracyCalc(totalWords));
+    this.interactionService.getAccuracy()
+      .subscribe(accuracy => this.accuracy = accuracy);
     this.interactionService.getTimerStatus()
       .subscribe(status => {
         if (status === TimerStatus.OFF) {
           this.showModal = true;
         }
       });
-  }
-
-  private accuracyCalc(totalWords: number): void {
-    if (totalWords === 0) {
-      this.accuracy = 0;
-    } else {
-      this.accuracy = Math.round((this.correctWords / totalWords) * 100);
-    }
   }
 
   onOpenButtonClick(): void {

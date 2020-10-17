@@ -69,22 +69,14 @@ class ModalComponent {
             .subscribe(words => this.correctWords = words);
         this.interactionService.getCorrectChars()
             .subscribe(chars => this.correctChars = chars);
-        this.interactionService.getTotalWords()
-            .subscribe(totalWords => this.accuracyCalc(totalWords));
+        this.interactionService.getAccuracy()
+            .subscribe(accuracy => this.accuracy = accuracy);
         this.interactionService.getTimerStatus()
             .subscribe(status => {
             if (status === _models_TimerStatus__WEBPACK_IMPORTED_MODULE_1__["TimerStatus"].OFF) {
                 this.showModal = true;
             }
         });
-    }
-    accuracyCalc(totalWords) {
-        if (totalWords === 0) {
-            this.accuracy = 0;
-        }
-        else {
-            this.accuracy = Math.round((this.correctWords / totalWords) * 100);
-        }
     }
     onOpenButtonClick() {
         this.showModal = true;
@@ -440,16 +432,8 @@ class StatsComponent {
             .subscribe(words => this.correctWords = words);
         this.interactionService.getCorrectChars()
             .subscribe(chars => this.correctChars = chars);
-        this.interactionService.getTotalWords()
-            .subscribe(totalWords => this.accuracyCalc(totalWords));
-    }
-    accuracyCalc(totalWords) {
-        if (totalWords === 0) {
-            this.accuracy = 0;
-        }
-        else {
-            this.accuracy = Math.round((this.correctWords / totalWords) * 100);
-        }
+        this.interactionService.getAccuracy()
+            .subscribe(accuracy => this.accuracy = accuracy);
     }
 }
 StatsComponent.ɵfac = function StatsComponent_Factory(t) { return new (t || StatsComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_services_interaction_service__WEBPACK_IMPORTED_MODULE_1__["InteractionService"])); };
@@ -801,6 +785,7 @@ class InteractionService {
         this.correctWords = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](0);
         this.correctChars = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](0);
         this.totalWords = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](0);
+        this.accuracy = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](0);
     }
     setTimerStatus(status) {
         this.timerStatus.next(status);
@@ -822,9 +807,21 @@ class InteractionService {
     }
     setTotalWords(totalWords) {
         this.totalWords.next(totalWords);
+        this.setAccuracy(totalWords);
     }
     getTotalWords() {
         return this.totalWords.asObservable();
+    }
+    setAccuracy(totalWords) {
+        if (totalWords === 0) {
+            this.accuracy.next(0);
+        }
+        else {
+            this.accuracy.next(Math.round((this.correctWords.getValue() / totalWords) * 100));
+        }
+    }
+    getAccuracy() {
+        return this.accuracy.asObservable();
     }
 }
 InteractionService.ɵfac = function InteractionService_Factory(t) { return new (t || InteractionService)(); };

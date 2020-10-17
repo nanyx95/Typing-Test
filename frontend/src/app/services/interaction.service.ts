@@ -11,6 +11,7 @@ export class InteractionService {
   private correctWords = new BehaviorSubject<number>(0);
   private correctChars = new BehaviorSubject<number>(0);
   private totalWords = new BehaviorSubject<number>(0);
+  private accuracy = new BehaviorSubject<number>(0);
 
   constructor() { }
 
@@ -40,10 +41,23 @@ export class InteractionService {
 
   setTotalWords(totalWords: number): void {
     this.totalWords.next(totalWords);
+    this.setAccuracy(totalWords);
   }
 
   getTotalWords(): Observable<number> {
     return this.totalWords.asObservable();
+  }
+
+  setAccuracy(totalWords: number): void {
+    if (totalWords === 0) {
+      this.accuracy.next(0);
+    } else {
+      this.accuracy.next(Math.round((this.correctWords.getValue() / totalWords) * 100));
+    }
+  }
+
+  getAccuracy(): Observable<number> {
+    return this.accuracy.asObservable();
   }
 
 }
