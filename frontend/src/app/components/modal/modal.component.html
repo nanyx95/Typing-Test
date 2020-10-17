@@ -3,15 +3,17 @@
   <div class="modal" [ngClass]="{'show': showModal}">
     <div *ngIf="correctWords < 30; then thenBlock else elseBlock"></div>
     <ng-template #thenBlock>
-      <h1>You're a Turtle.</h1>
+      <img src="./assets/rocket-1.svg" alt="rocket" width="250"/>
+      <h2>This was a static fire test, right?</h2>
       <p>
-        Well... You type with the speed of {{ correctWords }} WPM ({{ correctChars }} CPM). Your accuracy was {{ accuracy }}%. It could be better!
+        Well... You type with the speed of <span class="highlight">{{ correctWords }} WPM</span> ({{ correctChars }} CPM). Your accuracy was <span class="bold">{{ accuracy }}%</span>. It could be better!
       </p>
     </ng-template>
     <ng-template #elseBlock>
-      <h1>You're a T-REX.</h1>
+      <img src="./assets/rocket-2.svg" alt="rocket" width="250"/>
+      <h2>You're a Rocket!</h2>
       <p>
-        Nice! You type with the speed of {{ correctWords }} WPM ({{ correctChars }} CPM). Your accuracy was {{ accuracy }}%. Keep practicing!
+        Nice! You type with the speed of <span class="highlight">{{ correctWords }} WPM</span> ({{ correctChars }} CPM). Your accuracy was <span class="bold">{{ accuracy }}%</span>. Keep practicing!
       </p>
     </ng-template>
     <button id="close" (click)="onCloseButtonClick()">Try again</button>

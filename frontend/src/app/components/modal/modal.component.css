@@ -28,26 +28,46 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 30px 50px;
+  padding: 30px 25px;
   height: 100%;
   width: 100%;
   text-align: center;
 }
 
-.modal h1 {
-  margin: 0;
+.modal h2 {
+  margin: 3rem 0 0 0;
 }
 
 .modal p {
   opacity: .7;
 }
 
+.highlight {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: black;
+  background-color: #a3bffa;
+  border-radius: .25rem;
+  padding-left: .25rem;
+  padding-right: .25rem;
+  white-space: nowrap;
+}
+
+.bold {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: black;
+}
+
 button {
+  font-size: 1rem;
+  font-weight: 500;
   background-color: #5a67d8;
   border: 0;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
   color: white;
+  margin-top: 1rem;
   padding: 10px 25px;
   cursor: pointer;
 }
@@ -71,6 +91,5 @@ button:hover {
     height: auto;
     width: 600px;
     max-width: 100%;
-    text-align: center;
   }
 }
