@@ -36,6 +36,7 @@ export class ModalComponent implements OnInit {
   }
 
   onCloseButtonClick(): void {
+    this.interactionService.incrTestCounter();
     this.showModal = false;
   }
 }

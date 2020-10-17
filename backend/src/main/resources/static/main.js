@@ -82,6 +82,7 @@ class ModalComponent {
         this.showModal = true;
     }
     onCloseButtonClick() {
+        this.interactionService.incrTestCounter();
         this.showModal = false;
     }
 }
@@ -187,6 +188,10 @@ class TimerComponent {
     ngOnInit() {
         this.interactionService.getTimerStatus()
             .subscribe(status => {
+            if (status === _models_TimerStatus__WEBPACK_IMPORTED_MODULE_1__["TimerStatus"].DEFAULT) {
+                this.stopTimer();
+                this.timeLeft = '60';
+            }
             if (status === _models_TimerStatus__WEBPACK_IMPORTED_MODULE_1__["TimerStatus"].ON) {
                 this.startTimer();
             }
@@ -548,10 +553,24 @@ class InputBoxComponent {
             .subscribe(words => this.correctWordsCounter = words);
         this.interactionService.getCorrectChars()
             .subscribe(chars => this.correctCharsCounter = chars);
+        this.interactionService.getTestCounter()
+            .subscribe(() => this.restartTest());
         this.typedWords = [];
         // set input focus
         this.setFocus();
         this.retrieveWords();
+    }
+    restartTest() {
+        this.retrieveWords();
+        this.typedWords = [];
+        this.currentWord = null;
+        this.flagWrongWord = false;
+        this.interactionService.setTimerStatus(_models_TimerStatus__WEBPACK_IMPORTED_MODULE_2__["TimerStatus"].DEFAULT);
+        this.interactionService.setCorrectWords(0);
+        this.interactionService.setCorrectChars(0);
+        this.interactionService.setTotalWords(0);
+        document.getElementById('test-input').textContent = '';
+        this.setFocus();
     }
     setFocus() {
         document.getElementById('test-input').focus();
@@ -786,6 +805,7 @@ class InteractionService {
         this.correctChars = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](0);
         this.totalWords = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](0);
         this.accuracy = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](0);
+        this.testCounter = new rxjs__WEBPACK_IMPORTED_MODULE_1__["BehaviorSubject"](0);
     }
     setTimerStatus(status) {
         this.timerStatus.next(status);
@@ -822,6 +842,12 @@ class InteractionService {
     }
     getAccuracy() {
         return this.accuracy.asObservable();
+    }
+    incrTestCounter() {
+        this.testCounter.next(this.testCounter.getValue() + 1);
+    }
+    getTestCounter() {
+        return this.testCounter.asObservable();
     }
 }
 InteractionService.ɵfac = function InteractionService_Factory(t) { return new (t || InteractionService)(); };

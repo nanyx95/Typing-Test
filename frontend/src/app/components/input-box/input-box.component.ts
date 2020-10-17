@@ -37,10 +37,25 @@ export class InputBoxComponent implements OnInit {
       .subscribe(words => this.correctWordsCounter = words);
     this.interactionService.getCorrectChars()
       .subscribe(chars => this.correctCharsCounter = chars);
+    this.interactionService.getTestCounter()
+      .subscribe(() => this.restartTest());
     this.typedWords = [];
     // set input focus
     this.setFocus();
     this.retrieveWords();
+  }
+
+  restartTest(): void {
+    this.retrieveWords();
+    this.typedWords = [];
+    this.currentWord = null;
+    this.flagWrongWord = false;
+    this.interactionService.setTimerStatus(TimerStatus.DEFAULT);
+    this.interactionService.setCorrectWords(0);
+    this.interactionService.setCorrectChars(0);
+    this.interactionService.setTotalWords(0);
+    document.getElementById('test-input').textContent = '';
+    this.setFocus();
   }
 
   setFocus(): void {

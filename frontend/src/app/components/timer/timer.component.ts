@@ -17,6 +17,10 @@ export class TimerComponent implements OnInit {
   ngOnInit(): void {
     this.interactionService.getTimerStatus()
       .subscribe(status => {
+        if (status === TimerStatus.DEFAULT) {
+          this.stopTimer();
+          this.timeLeft = '60';
+        }
         if (status === TimerStatus.ON) {
           this.startTimer();
         }

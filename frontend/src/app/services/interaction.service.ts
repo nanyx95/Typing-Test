@@ -12,6 +12,7 @@ export class InteractionService {
   private correctChars = new BehaviorSubject<number>(0);
   private totalWords = new BehaviorSubject<number>(0);
   private accuracy = new BehaviorSubject<number>(0);
+  private testCounter = new BehaviorSubject<number>(0);
 
   constructor() { }
 
@@ -58,6 +59,14 @@ export class InteractionService {
 
   getAccuracy(): Observable<number> {
     return this.accuracy.asObservable();
+  }
+
+  incrTestCounter(): void {
+    this.testCounter.next(this.testCounter.getValue() + 1);
+  }
+
+  getTestCounter(): Observable<number> {
+    return this.testCounter.asObservable();
   }
 
 }
