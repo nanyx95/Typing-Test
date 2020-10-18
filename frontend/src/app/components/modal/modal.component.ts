@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {InteractionService} from '../../services/interaction.service';
 import {TimerStatus} from '../../models/TimerStatus';
+import {KeyCode} from '../../models/KeyCode';
 
 @Component({
   selector: 'app-modal',
@@ -29,6 +30,15 @@ export class ModalComponent implements OnInit {
           this.showModal = true;
         }
       });
+  }
+
+  @HostListener('window:keyup', ['$event'])
+  handleKeyboardEvent(event: KeyboardEvent): void {
+    if (event.code === KeyCode.ESCAPE) {
+      if (this.showModal === true) {
+        this.showModal = false;
+      }
+    }
   }
 
   onOpenButtonClick(): void {

@@ -8,6 +8,7 @@ import { TimerComponent } from './components/timer/timer.component';
 import { StatsComponent } from './components/stats/stats.component';
 import {WordsService} from './services/words.service';
 import { ModalComponent } from './components/modal/modal.component';
+import { RestartTestComponent } from './components/restart-test/restart-test.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ModalComponent } from './components/modal/modal.component';
     InputBoxComponent,
     TimerComponent,
     StatsComponent,
-    ModalComponent
+    ModalComponent,
+    RestartTestComponent
   ],
   imports: [
     BrowserModule,

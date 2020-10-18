@@ -1,0 +1,51 @@
+.restart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: #5a67d8;
+  border: 0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+  color: white;
+  margin-top: 3rem;
+  padding: 10px 25px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #667eea;
+  border-color: #4c51bf;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.info {
+  margin: .5rem;
+  font-size: .75rem;
+  font-weight: 200;
+}
+
+.highlight {
+  color: black;
+  background-color: #e2e8f0;
+  border-radius: .25rem;
+  padding-left: .25rem;
+  padding-right: .25rem;
+  white-space: nowrap;
+}
+
+/* touch stuff goes here */
+@media (hover: none){
+  .info {
+    display: none;
+  }
+}

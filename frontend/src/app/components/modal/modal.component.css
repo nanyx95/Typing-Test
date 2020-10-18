@@ -59,6 +59,13 @@
   color: black;
 }
 
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 button {
   font-size: 1rem;
   font-weight: 500;
@@ -80,6 +87,28 @@ button:hover {
   transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
   transition-duration: 150ms;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.info {
+  margin: .5rem;
+  font-size: .75rem;
+  font-weight: 200;
+}
+
+.highlight-esc {
+  color: black;
+  background-color: #e2e8f0;
+  border-radius: .25rem;
+  padding-left: .25rem;
+  padding-right: .25rem;
+  white-space: nowrap;
+}
+
+/* touch stuff goes here */
+@media (hover: none){
+  .info {
+    display: none;
+  }
 }
 
 /* Small */

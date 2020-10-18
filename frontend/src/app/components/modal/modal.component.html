@@ -16,6 +16,9 @@
         Nice! You type with the speed of <span class="highlight">{{ correctWords }} WPM</span> ({{ correctChars }} CPM). Your accuracy was <span class="bold">{{ accuracy }}%</span>. Keep practicing!
       </p>
     </ng-template>
-    <button id="close" (click)="onCloseButtonClick()">Try again</button>
+    <div class="button-container">
+      <button id="close" (click)="onCloseButtonClick()">Try again</button>
+      <p class="info">Or press the <span class="highlight-esc">Esc</span> key.</p>
+    </div>
   </div>
 </div>
