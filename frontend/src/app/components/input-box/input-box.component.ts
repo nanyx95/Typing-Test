@@ -4,6 +4,7 @@ import {WordsService} from '../../services/words.service';
 import {TypedWord} from '../../models/TypedWord';
 import {InteractionService} from '../../services/interaction.service';
 import {TimerStatus} from '../../models/TimerStatus';
+import {KeyCode} from '../../models/KeyCode';
 
 @Component({
   selector: 'app-input-box',
@@ -75,12 +76,12 @@ export class InputBoxComponent implements OnInit {
   }
 
   /**
-   * Handle {@link KEY_CODE} event
+   * Handle {@link KeyCode} event
    * @param event the event to handle
    */
   onKeyDown(event: KeyboardEvent): void {
     const inputValue = (event.target as HTMLElement).textContent;
-    if (event.code === KEY_CODE.ENTER || event.code === KEY_CODE.SPACE) {
+    if (event.code === KeyCode.ENTER || event.code === KeyCode.SPACE) {
       event.preventDefault();
       event.stopPropagation();
       // add typed word inside typedWords array
@@ -108,14 +109,14 @@ export class InputBoxComponent implements OnInit {
 
         this.retrieveWord();
       }
-    } else if (event.code === KEY_CODE.BACKSPACE) {
+    } else if (event.code === KeyCode.BACKSPACE) {
       if (inputValue === this.currentWord.substr(0, inputValue.length)) {
         this.words[0].word = inputValue.charAt(inputValue.length - 1).concat(this.words[0].word);
       }
-    } else if (event.code === KEY_CODE.ARROW_UP
-      || event.code === KEY_CODE.ARROW_DOWN
-      || event.code === KEY_CODE.ARROW_LEFT
-      || event.code === KEY_CODE.ARROW_RIGHT) {
+    } else if (event.code === KeyCode.ARROW_UP
+      || event.code === KeyCode.ARROW_DOWN
+      || event.code === KeyCode.ARROW_LEFT
+      || event.code === KeyCode.ARROW_RIGHT) {
       event.preventDefault();
       event.stopPropagation();
     }
@@ -204,14 +205,4 @@ export class InputBoxComponent implements OnInit {
     }
   }
 
-}
-
-enum KEY_CODE {
-  SPACE = 'Space',
-  ENTER = 'Enter',
-  BACKSPACE = 'Backspace',
-  ARROW_UP = 'ArrowUp',
-  ARROW_DOWN = 'ArrowDown',
-  ARROW_LEFT = 'ArrowLeft',
-  ARROW_RIGHT = 'ArrowRight'
 }
