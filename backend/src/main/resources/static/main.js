@@ -24,7 +24,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ModalComponent", function() { return ModalComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
 /* harmony import */ var _models_TimerStatus__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../models/TimerStatus */ "8A9k");
-/* harmony import */ var _models_KeyCode__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../models/KeyCode */ "ov5B");
+/* harmony import */ var _models_Key__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../models/Key */ "IEF5");
 /* harmony import */ var _services_interaction_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../services/interaction.service */ "zD6u");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ "ofXK");
 
@@ -107,7 +107,7 @@ class ModalComponent {
         });
     }
     handleKeyboardEvent(event) {
-        if (event.code === _models_KeyCode__WEBPACK_IMPORTED_MODULE_2__["KeyCode"].ESCAPE) {
+        if (event.code === _models_Key__WEBPACK_IMPORTED_MODULE_2__["Key"].ESCAPE) {
             if (this.showModal === true) {
                 this.showModal = false;
             }
@@ -207,6 +207,31 @@ __webpack_require__.r(__webpack_exports__);
 const environment = {
     production: true
 };
+
+
+/***/ }),
+
+/***/ "IEF5":
+/*!*******************************!*\
+  !*** ./src/app/models/Key.ts ***!
+  \*******************************/
+/*! exports provided: Key */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Key", function() { return Key; });
+var Key;
+(function (Key) {
+    Key["SPACE"] = " ";
+    Key["ENTER"] = "Enter";
+    Key["BACKSPACE"] = "Backspace";
+    Key["ESCAPE"] = "Escape";
+    Key["ARROW_UP"] = "ArrowUp";
+    Key["ARROW_DOWN"] = "ArrowDown";
+    Key["ARROW_LEFT"] = "ArrowLeft";
+    Key["ARROW_RIGHT"] = "ArrowRight";
+})(Key || (Key = {}));
 
 
 /***/ }),
@@ -349,7 +374,7 @@ AppComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCompo
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](10, "app-restart-test");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](11, "app-modal");
-    } }, directives: [_components_stats_stats_component__WEBPACK_IMPORTED_MODULE_1__["StatsComponent"], _components_timer_timer_component__WEBPACK_IMPORTED_MODULE_2__["TimerComponent"], _components_input_box_input_box_component__WEBPACK_IMPORTED_MODULE_3__["InputBoxComponent"], _components_restart_test_restart_test_component__WEBPACK_IMPORTED_MODULE_4__["RestartTestComponent"], _components_modal_modal_component__WEBPACK_IMPORTED_MODULE_5__["ModalComponent"]], styles: [".content-wrapper[_ngcontent-%COMP%] {\n  height: 100%;\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n}\n\n.header[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  text-align: center;\n}\n\n.header[_ngcontent-%COMP%]    > h1[_ngcontent-%COMP%] {\n  font-size: 1.25rem;\n  font-weight: 100;\n  letter-spacing: .1rem;\n  margin-bottom: .5rem;\n  text-transform: uppercase;\n}\n\n.header[_ngcontent-%COMP%]    > h3[_ngcontent-%COMP%] {\n  color: #5456E3;\n  font-size: 2.75rem;\n  font-weight: 800;\n  margin-top: .5rem;\n}\n\n.stats-wrapper[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  margin-bottom: 2rem;\n}\n\n#input-box[_ngcontent-%COMP%] {\n  width: 100%;\n}\n\n\n\n@media (min-width: 640px) {\n  .stats-wrapper[_ngcontent-%COMP%] {\n    flex-direction: row-reverse;\n  }\n}\n\n\n\n@media (min-width: 768px) {\n  .header[_ngcontent-%COMP%]    > h3[_ngcontent-%COMP%] {\n    font-size: 3.5rem;\n  }\n}\n\n\n\n@media (min-width: 1024px) {\n  .header[_ngcontent-%COMP%]    > h3[_ngcontent-%COMP%] {\n    font-size: 4rem;\n  }\n}\n\n\n\n@media (min-width: 1280px) {\n  .header[_ngcontent-%COMP%]    > h3[_ngcontent-%COMP%] {\n    font-size: 4.5rem;\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXBwLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxZQUFZO0VBQ1osV0FBVztFQUNYLGFBQWE7RUFDYixzQkFBc0I7RUFDdEIsbUJBQW1CO0VBQ25CLHVCQUF1QjtBQUN6Qjs7QUFFQTtFQUNFLGFBQWE7RUFDYixzQkFBc0I7RUFDdEIsdUJBQXVCO0VBQ3ZCLG1CQUFtQjtFQUNuQixrQkFBa0I7QUFDcEI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsZ0JBQWdCO0VBQ2hCLHFCQUFxQjtFQUNyQixvQkFBb0I7RUFDcEIseUJBQXlCO0FBQzNCOztBQUVBO0VBQ0UsY0FBYztFQUNkLGtCQUFrQjtFQUNsQixnQkFBZ0I7RUFDaEIsaUJBQWlCO0FBQ25COztBQUVBO0VBQ0UsYUFBYTtFQUNiLHNCQUFzQjtFQUN0QixtQkFBbUI7RUFDbkIsdUJBQXVCO0VBQ3ZCLG1CQUFtQjtBQUNyQjs7QUFFQTtFQUNFLFdBQVc7QUFDYjs7QUFFQSxVQUFVOztBQUNWO0VBQ0U7SUFDRSwyQkFBMkI7RUFDN0I7QUFDRjs7QUFFQSxXQUFXOztBQUNYO0VBQ0U7SUFDRSxpQkFBaUI7RUFDbkI7QUFDRjs7QUFFQSxVQUFVOztBQUNWO0VBQ0U7SUFDRSxlQUFlO0VBQ2pCO0FBQ0Y7O0FBRUEsZ0JBQWdCOztBQUNoQjtFQUNFO0lBQ0UsaUJBQWlCO0VBQ25CO0FBQ0YiLCJmaWxlIjoic3JjL2FwcC9hcHAuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jb250ZW50LXdyYXBwZXIge1xuICBoZWlnaHQ6IDEwMCU7XG4gIHdpZHRoOiAxMDAlO1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbn1cblxuLmhlYWRlciB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICB0ZXh0LWFsaWduOiBjZW50ZXI7XG59XG5cbi5oZWFkZXIgPiBoMSB7XG4gIGZvbnQtc2l6ZTogMS4yNXJlbTtcbiAgZm9udC13ZWlnaHQ6IDEwMDtcbiAgbGV0dGVyLXNwYWNpbmc6IC4xcmVtO1xuICBtYXJnaW4tYm90dG9tOiAuNXJlbTtcbiAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcbn1cblxuLmhlYWRlciA+IGgzIHtcbiAgY29sb3I6ICM1NDU2RTM7XG4gIGZvbnQtc2l6ZTogMi43NXJlbTtcbiAgZm9udC13ZWlnaHQ6IDgwMDtcbiAgbWFyZ2luLXRvcDogLjVyZW07XG59XG5cbi5zdGF0cy13cmFwcGVyIHtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIG1hcmdpbi1ib3R0b206IDJyZW07XG59XG5cbiNpbnB1dC1ib3gge1xuICB3aWR0aDogMTAwJTtcbn1cblxuLyogU21hbGwgKi9cbkBtZWRpYSAobWluLXdpZHRoOiA2NDBweCkge1xuICAuc3RhdHMtd3JhcHBlciB7XG4gICAgZmxleC1kaXJlY3Rpb246IHJvdy1yZXZlcnNlO1xuICB9XG59XG5cbi8qIE1lZGl1bSAqL1xuQG1lZGlhIChtaW4td2lkdGg6IDc2OHB4KSB7XG4gIC5oZWFkZXIgPiBoMyB7XG4gICAgZm9udC1zaXplOiAzLjVyZW07XG4gIH1cbn1cblxuLyogTGFyZ2UgKi9cbkBtZWRpYSAobWluLXdpZHRoOiAxMDI0cHgpIHtcbiAgLmhlYWRlciA+IGgzIHtcbiAgICBmb250LXNpemU6IDRyZW07XG4gIH1cbn1cblxuLyogRXh0cmEgTGFyZ2UgKi9cbkBtZWRpYSAobWluLXdpZHRoOiAxMjgwcHgpIHtcbiAgLmhlYWRlciA+IGgzIHtcbiAgICBmb250LXNpemU6IDQuNXJlbTtcbiAgfVxufVxuIl19 */"] });
+    } }, directives: [_components_stats_stats_component__WEBPACK_IMPORTED_MODULE_1__["StatsComponent"], _components_timer_timer_component__WEBPACK_IMPORTED_MODULE_2__["TimerComponent"], _components_input_box_input_box_component__WEBPACK_IMPORTED_MODULE_3__["InputBoxComponent"], _components_restart_test_restart_test_component__WEBPACK_IMPORTED_MODULE_4__["RestartTestComponent"], _components_modal_modal_component__WEBPACK_IMPORTED_MODULE_5__["ModalComponent"]], styles: [".content-wrapper[_ngcontent-%COMP%] {\n  min-height: 568px;\n  height: 100%;\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n}\n\n.header[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  text-align: center;\n}\n\n.header[_ngcontent-%COMP%]    > h1[_ngcontent-%COMP%] {\n  font-size: 1.25rem;\n  font-weight: 100;\n  letter-spacing: .1rem;\n  margin-bottom: .5rem;\n  text-transform: uppercase;\n}\n\n.header[_ngcontent-%COMP%]    > h3[_ngcontent-%COMP%] {\n  color: #5456E3;\n  font-size: 2.75rem;\n  font-weight: 800;\n  margin-top: .5rem;\n}\n\n.stats-wrapper[_ngcontent-%COMP%] {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  margin-bottom: 2rem;\n}\n\n#input-box[_ngcontent-%COMP%] {\n  width: 100%;\n}\n\n\n\n@media (min-width: 640px) {\n  .stats-wrapper[_ngcontent-%COMP%] {\n    flex-direction: row-reverse;\n  }\n}\n\n\n\n@media (min-width: 768px) {\n  .header[_ngcontent-%COMP%]    > h3[_ngcontent-%COMP%] {\n    font-size: 3.5rem;\n  }\n}\n\n\n\n@media (min-width: 1024px) {\n  .header[_ngcontent-%COMP%]    > h3[_ngcontent-%COMP%] {\n    font-size: 4rem;\n  }\n}\n\n\n\n@media (min-width: 1280px) {\n  .header[_ngcontent-%COMP%]    > h3[_ngcontent-%COMP%] {\n    font-size: 4.5rem;\n  }\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvYXBwLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDRSxpQkFBaUI7RUFDakIsWUFBWTtFQUNaLFdBQVc7RUFDWCxhQUFhO0VBQ2Isc0JBQXNCO0VBQ3RCLG1CQUFtQjtFQUNuQix1QkFBdUI7QUFDekI7O0FBRUE7RUFDRSxhQUFhO0VBQ2Isc0JBQXNCO0VBQ3RCLHVCQUF1QjtFQUN2QixtQkFBbUI7RUFDbkIsa0JBQWtCO0FBQ3BCOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLGdCQUFnQjtFQUNoQixxQkFBcUI7RUFDckIsb0JBQW9CO0VBQ3BCLHlCQUF5QjtBQUMzQjs7QUFFQTtFQUNFLGNBQWM7RUFDZCxrQkFBa0I7RUFDbEIsZ0JBQWdCO0VBQ2hCLGlCQUFpQjtBQUNuQjs7QUFFQTtFQUNFLGFBQWE7RUFDYixzQkFBc0I7RUFDdEIsbUJBQW1CO0VBQ25CLHVCQUF1QjtFQUN2QixtQkFBbUI7QUFDckI7O0FBRUE7RUFDRSxXQUFXO0FBQ2I7O0FBRUEsVUFBVTs7QUFDVjtFQUNFO0lBQ0UsMkJBQTJCO0VBQzdCO0FBQ0Y7O0FBRUEsV0FBVzs7QUFDWDtFQUNFO0lBQ0UsaUJBQWlCO0VBQ25CO0FBQ0Y7O0FBRUEsVUFBVTs7QUFDVjtFQUNFO0lBQ0UsZUFBZTtFQUNqQjtBQUNGOztBQUVBLGdCQUFnQjs7QUFDaEI7RUFDRTtJQUNFLGlCQUFpQjtFQUNuQjtBQUNGIiwiZmlsZSI6InNyYy9hcHAvYXBwLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY29udGVudC13cmFwcGVyIHtcbiAgbWluLWhlaWdodDogNTY4cHg7XG4gIGhlaWdodDogMTAwJTtcbiAgd2lkdGg6IDEwMCU7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xufVxuXG4uaGVhZGVyIHtcbiAgZGlzcGxheTogZmxleDtcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cblxuLmhlYWRlciA+IGgxIHtcbiAgZm9udC1zaXplOiAxLjI1cmVtO1xuICBmb250LXdlaWdodDogMTAwO1xuICBsZXR0ZXItc3BhY2luZzogLjFyZW07XG4gIG1hcmdpbi1ib3R0b206IC41cmVtO1xuICB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlO1xufVxuXG4uaGVhZGVyID4gaDMge1xuICBjb2xvcjogIzU0NTZFMztcbiAgZm9udC1zaXplOiAyLjc1cmVtO1xuICBmb250LXdlaWdodDogODAwO1xuICBtYXJnaW4tdG9wOiAuNXJlbTtcbn1cblxuLnN0YXRzLXdyYXBwZXIge1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgbWFyZ2luLWJvdHRvbTogMnJlbTtcbn1cblxuI2lucHV0LWJveCB7XG4gIHdpZHRoOiAxMDAlO1xufVxuXG4vKiBTbWFsbCAqL1xuQG1lZGlhIChtaW4td2lkdGg6IDY0MHB4KSB7XG4gIC5zdGF0cy13cmFwcGVyIHtcbiAgICBmbGV4LWRpcmVjdGlvbjogcm93LXJldmVyc2U7XG4gIH1cbn1cblxuLyogTWVkaXVtICovXG5AbWVkaWEgKG1pbi13aWR0aDogNzY4cHgpIHtcbiAgLmhlYWRlciA+IGgzIHtcbiAgICBmb250LXNpemU6IDMuNXJlbTtcbiAgfVxufVxuXG4vKiBMYXJnZSAqL1xuQG1lZGlhIChtaW4td2lkdGg6IDEwMjRweCkge1xuICAuaGVhZGVyID4gaDMge1xuICAgIGZvbnQtc2l6ZTogNHJlbTtcbiAgfVxufVxuXG4vKiBFeHRyYSBMYXJnZSAqL1xuQG1lZGlhIChtaW4td2lkdGg6IDEyODBweCkge1xuICAuaGVhZGVyID4gaDMge1xuICAgIGZvbnQtc2l6ZTogNC41cmVtO1xuICB9XG59XG4iXX0= */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](AppComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{
@@ -556,7 +581,7 @@ StatsComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCom
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RestartTestComponent", function() { return RestartTestComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
-/* harmony import */ var _models_KeyCode__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../models/KeyCode */ "ov5B");
+/* harmony import */ var _models_Key__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../models/Key */ "IEF5");
 /* harmony import */ var _services_interaction_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../services/interaction.service */ "zD6u");
 
 
@@ -569,7 +594,7 @@ class RestartTestComponent {
     ngOnInit() {
     }
     handleKeyboardEvent(event) {
-        if (event.code === _models_KeyCode__WEBPACK_IMPORTED_MODULE_1__["KeyCode"].ESCAPE) {
+        if (event.code === _models_Key__WEBPACK_IMPORTED_MODULE_1__["Key"].ESCAPE) {
             this.interactionService.incrTestCounter();
         }
     }
@@ -610,31 +635,6 @@ RestartTestComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdef
 
 /***/ }),
 
-/***/ "ov5B":
-/*!***********************************!*\
-  !*** ./src/app/models/KeyCode.ts ***!
-  \***********************************/
-/*! exports provided: KeyCode */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "KeyCode", function() { return KeyCode; });
-var KeyCode;
-(function (KeyCode) {
-    KeyCode["SPACE"] = "Space";
-    KeyCode["ENTER"] = "Enter";
-    KeyCode["BACKSPACE"] = "Backspace";
-    KeyCode["ESCAPE"] = "Escape";
-    KeyCode["ARROW_UP"] = "ArrowUp";
-    KeyCode["ARROW_DOWN"] = "ArrowDown";
-    KeyCode["ARROW_LEFT"] = "ArrowLeft";
-    KeyCode["ARROW_RIGHT"] = "ArrowRight";
-})(KeyCode || (KeyCode = {}));
-
-
-/***/ }),
-
 /***/ "oz0K":
 /*!*************************************************************!*\
   !*** ./src/app/components/input-box/input-box.component.ts ***!
@@ -648,7 +648,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "fXoL");
 /* harmony import */ var _models_TypedWord__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../models/TypedWord */ "uBEk");
 /* harmony import */ var _models_TimerStatus__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../models/TimerStatus */ "8A9k");
-/* harmony import */ var _models_KeyCode__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../models/KeyCode */ "ov5B");
+/* harmony import */ var _models_Key__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../models/Key */ "IEF5");
 /* harmony import */ var _services_words_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../services/words.service */ "UMYA");
 /* harmony import */ var _services_interaction_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../services/interaction.service */ "zD6u");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common */ "ofXK");
@@ -734,12 +734,12 @@ class InputBoxComponent {
         });
     }
     /**
-     * Handle {@link KeyCode} event
+     * Handle {@link Key} event
      * @param event the event to handle
      */
     onKeyDown(event) {
         const inputValue = event.target.textContent;
-        if (event.code === _models_KeyCode__WEBPACK_IMPORTED_MODULE_3__["KeyCode"].ENTER || event.code === _models_KeyCode__WEBPACK_IMPORTED_MODULE_3__["KeyCode"].SPACE) {
+        if (event.key === _models_Key__WEBPACK_IMPORTED_MODULE_3__["Key"].ENTER || event.key === _models_Key__WEBPACK_IMPORTED_MODULE_3__["Key"].SPACE) {
             event.preventDefault();
             event.stopPropagation();
             // add typed word inside typedWords array
@@ -767,15 +767,15 @@ class InputBoxComponent {
                 this.retrieveWord();
             }
         }
-        else if (event.code === _models_KeyCode__WEBPACK_IMPORTED_MODULE_3__["KeyCode"].BACKSPACE) {
-            if (inputValue === this.currentWord.substr(0, inputValue.length)) {
+        else if (event.key === _models_Key__WEBPACK_IMPORTED_MODULE_3__["Key"].BACKSPACE) {
+            if (this.currentWord !== null && inputValue === this.currentWord.substr(0, inputValue.length)) {
                 this.words[0].word = inputValue.charAt(inputValue.length - 1).concat(this.words[0].word);
             }
         }
-        else if (event.code === _models_KeyCode__WEBPACK_IMPORTED_MODULE_3__["KeyCode"].ARROW_UP
-            || event.code === _models_KeyCode__WEBPACK_IMPORTED_MODULE_3__["KeyCode"].ARROW_DOWN
-            || event.code === _models_KeyCode__WEBPACK_IMPORTED_MODULE_3__["KeyCode"].ARROW_LEFT
-            || event.code === _models_KeyCode__WEBPACK_IMPORTED_MODULE_3__["KeyCode"].ARROW_RIGHT) {
+        else if (event.key === _models_Key__WEBPACK_IMPORTED_MODULE_3__["Key"].ARROW_UP
+            || event.key === _models_Key__WEBPACK_IMPORTED_MODULE_3__["Key"].ARROW_DOWN
+            || event.key === _models_Key__WEBPACK_IMPORTED_MODULE_3__["Key"].ARROW_LEFT
+            || event.key === _models_Key__WEBPACK_IMPORTED_MODULE_3__["Key"].ARROW_RIGHT) {
             event.preventDefault();
             event.stopPropagation();
         }

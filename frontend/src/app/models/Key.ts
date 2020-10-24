@@ -1,5 +1,5 @@
-export enum KeyCode {
-  SPACE = 'Space',
+export enum Key {
+  SPACE = ' ',
   ENTER = 'Enter',
   BACKSPACE = 'Backspace',
   ESCAPE = 'Escape',

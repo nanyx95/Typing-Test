@@ -4,7 +4,7 @@ import {WordsService} from '../../services/words.service';
 import {TypedWord} from '../../models/TypedWord';
 import {InteractionService} from '../../services/interaction.service';
 import {TimerStatus} from '../../models/TimerStatus';
-import {KeyCode} from '../../models/KeyCode';
+import {Key} from '../../models/Key';
 
 @Component({
   selector: 'app-input-box',
@@ -76,12 +76,12 @@ export class InputBoxComponent implements OnInit {
   }
 
   /**
-   * Handle {@link KeyCode} event
+   * Handle {@link Key} event
    * @param event the event to handle
    */
   onKeyDown(event: KeyboardEvent): void {
     const inputValue = (event.target as HTMLElement).textContent;
-    if (event.code === KeyCode.ENTER || event.code === KeyCode.SPACE) {
+    if (event.key === Key.ENTER || event.key === Key.SPACE) {
       event.preventDefault();
       event.stopPropagation();
       // add typed word inside typedWords array
@@ -109,14 +109,14 @@ export class InputBoxComponent implements OnInit {
 
         this.retrieveWord();
       }
-    } else if (event.code === KeyCode.BACKSPACE) {
-      if (inputValue === this.currentWord.substr(0, inputValue.length)) {
+    } else if (event.key === Key.BACKSPACE) {
+      if (this.currentWord !== null && inputValue === this.currentWord.substr(0, inputValue.length)) {
         this.words[0].word = inputValue.charAt(inputValue.length - 1).concat(this.words[0].word);
       }
-    } else if (event.code === KeyCode.ARROW_UP
-      || event.code === KeyCode.ARROW_DOWN
-      || event.code === KeyCode.ARROW_LEFT
-      || event.code === KeyCode.ARROW_RIGHT) {
+    } else if (event.key === Key.ARROW_UP
+      || event.key === Key.ARROW_DOWN
+      || event.key === Key.ARROW_LEFT
+      || event.key === Key.ARROW_RIGHT) {
       event.preventDefault();
       event.stopPropagation();
     }

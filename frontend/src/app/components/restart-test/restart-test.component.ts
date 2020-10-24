@@ -1,6 +1,6 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {InteractionService} from '../../services/interaction.service';
-import {KeyCode} from '../../models/KeyCode';
+import {Key} from '../../models/Key';
 
 @Component({
   selector: 'app-restart-test',
@@ -16,7 +16,7 @@ export class RestartTestComponent implements OnInit {
 
   @HostListener('window:keyup', ['$event'])
   handleKeyboardEvent(event: KeyboardEvent): void {
-    if (event.code === KeyCode.ESCAPE) {
+    if (event.code === Key.ESCAPE) {
       this.interactionService.incrTestCounter();
     }
   }
