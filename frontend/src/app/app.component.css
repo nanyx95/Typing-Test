@@ -1,21 +1,22 @@
-.content-wrapper {
+.container {
+  min-height: 568px;
   height: 100%;
-  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 }
 
-.header {
+.header-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
+  flex: 1 0 auto;
   text-align: center;
 }
 
-.header > h1 {
+.header-wrapper > h1 {
   font-size: 1.25rem;
   font-weight: 100;
   letter-spacing: .1rem;
@@ -23,11 +24,20 @@
   text-transform: uppercase;
 }
 
-.header > h3 {
+.header-wrapper > h3 {
   color: #5456E3;
   font-size: 2.75rem;
   font-weight: 800;
   margin-top: .5rem;
+}
+
+.app-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
 }
 
 .stats-wrapper {
@@ -42,6 +52,36 @@
   width: 100%;
 }
 
+.footer-wrapper {
+  font-size: .75rem;
+  font-weight: 300;
+  color: #718096;
+  letter-spacing: 0.025em;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex: 1 0 auto;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.svg-heart {
+  height: .75rem;
+  width: .75rem;
+  margin-left: .25rem;
+  margin-right: .25rem;
+  color: #5456E3;
+}
+
+.btn-github {
+  height: 1.25rem;
+  width: 1.25rem;
+}
+
 /* Small */
 @media (min-width: 640px) {
   .stats-wrapper {
@@ -51,21 +91,21 @@
 
 /* Medium */
 @media (min-width: 768px) {
-  .header > h3 {
+  .header-wrapper > h3 {
     font-size: 3.5rem;
   }
 }
 
 /* Large */
 @media (min-width: 1024px) {
-  .header > h3 {
+  .header-wrapper > h3 {
     font-size: 4rem;
   }
 }
 
 /* Extra Large */
 @media (min-width: 1280px) {
-  .header > h3 {
+  .header-wrapper > h3 {
     font-size: 4.5rem;
   }
 }
