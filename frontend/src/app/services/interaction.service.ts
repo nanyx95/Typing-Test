@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {TimerStatus} from '../models/TimerStatus';
+import {ModalContent} from '../models/ModalContent';
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +14,20 @@ export class InteractionService {
   private totalWords = new BehaviorSubject<number>(0);
   private accuracy = new BehaviorSubject<number>(0);
   private testCounter = new BehaviorSubject<number>(0);
+  private modalContent = new BehaviorSubject<ModalContent>(null);
 
-  constructor() { }
+  constructor() {
+    this.getTimerStatus()
+      .subscribe(status => {
+        if (status === TimerStatus.OFF) {
+          this.generateModalContentWithStats();
+        }
+      });
+    // detect Android device
+    if (/Android/i.test(navigator.userAgent)) {
+      this.androidModalContent();
+    }
+  }
 
   setTimerStatus(status: TimerStatus): void {
     this.timerStatus.next(status);
@@ -67,6 +80,38 @@ export class InteractionService {
 
   getTestCounter(): Observable<number> {
     return this.testCounter.asObservable();
+  }
+
+  private generateModalContentWithStats(): void {
+    const modalContent: ModalContent = new ModalContent();
+    if (this.correctWords.getValue() < 30) {
+      modalContent.img = './assets/rocket-1.svg';
+      modalContent.imgAlt = 'rocket';
+      modalContent.title = 'This was a static fire test, right?';
+      modalContent.body = `Well... You type with the speed of <span class="highlight">${this.correctWords.getValue()} WPM</span> (${this.correctChars.getValue()} CPM). Your accuracy was <span class="bold">${this.accuracy.getValue()}%</span>. It could be better!`;
+      modalContent.showButton = true;
+    } else {
+      modalContent.img = './assets/rocket-2.svg';
+      modalContent.imgAlt = 'rocket';
+      modalContent.title = 'You\'re a Rocket!';
+      modalContent.body = `Nice! You type with the speed of <span class="highlight">${this.correctWords.getValue()} WPM</span> (${this.correctChars.getValue()} CPM). Your accuracy was <span class="bold">${this.accuracy.getValue()}%</span>. Keep practicing!`;
+      modalContent.showButton = true;
+    }
+    this.modalContent.next(modalContent);
+  }
+
+  private androidModalContent(): void {
+    const modalContent: ModalContent = new ModalContent();
+    modalContent.img = './assets/android.svg';
+    modalContent.imgAlt = 'android device';
+    modalContent.title = 'Sorry, Android is not supported :(';
+    modalContent.body = `Due to abnormal behavior of Android devices detecting keystrokes, Android is not currently supported.<br><br>More info <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=118639" target="_blank">here</a>.`;
+    modalContent.showButton = false;
+    this.modalContent.next(modalContent);
+  }
+
+  getModalContent(): Observable<ModalContent> {
+    return this.modalContent.asObservable();
   }
 
 }

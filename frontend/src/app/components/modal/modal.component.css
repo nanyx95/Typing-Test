@@ -42,7 +42,7 @@
   opacity: .7;
 }
 
-.highlight {
+:host ::ng-deep .highlight {
   font-size: 1.125rem;
   font-weight: 500;
   color: black;
@@ -53,7 +53,7 @@
   white-space: nowrap;
 }
 
-.bold {
+:host ::ng-deep .bold {
   font-size: 1.125rem;
   font-weight: 500;
   color: black;
@@ -64,6 +64,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.button-container.hide {
+  display: none;
 }
 
 button {
