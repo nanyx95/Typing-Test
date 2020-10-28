@@ -51,7 +51,7 @@ public class JsonWordServiceImpl implements WordService {
 	private JsonWord parseJsonFile() throws IOException {
 		Resource resourceFile = new ClassPathResource("words.json");
 		ObjectMapper objectMapper = new ObjectMapper();
-		return objectMapper.readValue(resourceFile.getFile(), JsonWord.class);
+		return objectMapper.readValue(resourceFile.getInputStream(), JsonWord.class);
 	}
 
 }
