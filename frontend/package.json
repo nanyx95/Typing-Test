@@ -9,8 +9,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "java:dev": "ng build --watch --configuration=development",
-    "java:build": "ng build --configuration=production",
-    "heroku-postbuild": "ng build --configuration=production"
+    "java:build": "ng build --configuration=production"
   },
   "private": true,
   "dependencies": {
