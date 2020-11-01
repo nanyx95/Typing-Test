@@ -1,4 +1,4 @@
-#Typing Test
+# Typing Test
 > A modern web app to test your typing speed
 
 ![screenshot](img/typing-test-screenshot.png "Typing Test screenshot")
@@ -7,7 +7,7 @@ Built with:
 - [Angular](https://angular.io)
 - [Spring Boot](https://spring.io)
 
-##Getting started
+## Getting started
 1.  Install the npm packages and build the frontend
     ```bash
     cd frontend/
