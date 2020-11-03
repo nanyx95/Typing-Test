@@ -1,5 +1,5 @@
 # Typing Test
-> A modern web app to test your typing speed
+> A modern web app to test your typing speed. [Try it now!](https://fs-typing-test.herokuapp.com)
 
 ![screenshot](img/typing-test-screenshot.png "Typing Test screenshot")
 
