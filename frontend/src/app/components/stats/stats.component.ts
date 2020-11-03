@@ -11,6 +11,7 @@ export class StatsComponent implements OnInit {
   correctWords: number;
   correctChars: number;
   accuracy: number;
+  topWPM: number;
 
   constructor(private interactionService: InteractionService) { }
 
@@ -21,6 +22,8 @@ export class StatsComponent implements OnInit {
       .subscribe(chars => this.correctChars = chars);
     this.interactionService.getAccuracy()
       .subscribe(accuracy => this.accuracy = accuracy);
+    this.interactionService.getTopWPM()
+      .subscribe(topWPM => this.topWPM = topWPM);
   }
 
 }

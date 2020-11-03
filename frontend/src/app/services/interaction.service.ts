@@ -13,6 +13,7 @@ export class InteractionService {
   private correctChars = new BehaviorSubject<number>(0);
   private totalWords = new BehaviorSubject<number>(0);
   private accuracy = new BehaviorSubject<number>(0);
+  private topWPM = new BehaviorSubject<number>(0);
   private testCounter = new BehaviorSubject<number>(0);
   private modalContent = new BehaviorSubject<ModalContent>(null);
 
@@ -21,12 +22,14 @@ export class InteractionService {
       .subscribe(status => {
         if (status === TimerStatus.OFF) {
           this.generateModalContentWithStats();
+          this.saveTopWPMToLocalStorage();
         }
       });
     // detect Android device
     if (/Android/i.test(navigator.userAgent)) {
       this.androidModalContent();
     }
+    this.retrieveTopWPMFromLocalStorage();
   }
 
   setTimerStatus(status: TimerStatus): void {
@@ -72,6 +75,27 @@ export class InteractionService {
 
   getAccuracy(): Observable<number> {
     return this.accuracy.asObservable();
+  }
+
+  private retrieveTopWPMFromLocalStorage(): void {
+    const wpm = Number(localStorage.getItem('top-wpm')) || 0;
+    this.topWPM.next(wpm);
+  }
+
+  private saveTopWPMToLocalStorage(): void {
+    const wpm = this.correctWords.getValue();
+    if (wpm > this.topWPM.getValue()) {
+      localStorage.setItem('top-wpm', String(wpm));
+      this.setTopWPM(wpm);
+    }
+  }
+
+  private setTopWPM(wpm: number): void {
+    this.topWPM.next(wpm);
+  }
+
+  getTopWPM(): Observable<number> {
+    return this.topWPM.asObservable();
   }
 
   incrTestCounter(): void {
