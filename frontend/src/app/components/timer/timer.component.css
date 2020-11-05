@@ -3,7 +3,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 1rem;
 }
 
 .timer {
@@ -25,10 +24,6 @@ p {
 
 /* Small */
 @media (min-width: 640px) {
-  .timer-wrapper {
-    margin: 0 3rem 1rem 0;
-  }
-
   .timer {
     font-size: 3rem;
   }

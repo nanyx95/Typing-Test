@@ -48,6 +48,10 @@
   margin-bottom: 2rem;
 }
 
+#timer {
+  margin-top: 2rem;
+}
+
 #input-box {
   width: 100%;
 }
@@ -86,6 +90,10 @@
 @media (min-width: 640px) {
   .stats-wrapper {
     flex-direction: row-reverse;
+  }
+
+  #timer {
+    margin: 0 3rem 0 0;
   }
 }
 
