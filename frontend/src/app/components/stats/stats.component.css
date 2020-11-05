@@ -25,8 +25,44 @@
   color: #4a5568;
 }
 
+#top-wpm {
+  display: none;
+}
+
 p {
   margin: 0;
+}
+
+/* Show #top-wpm */
+@media (min-width: 353px) {
+  #top-wpm {
+    display: inherit;
+    justify-content: flex-end;
+  }
+
+  #top-wpm .stat {
+    font-size: 1.5rem;
+  }
+
+  #top-wpm .stat-label {
+    font-size: .5rem;
+  }
+}
+
+/* Small (sm) */
+@media (min-width: 640px) {
+  #top-wpm {
+    justify-content: center;
+    margin-left: 1.5rem;
+  }
+
+  #top-wpm .stat {
+    font-size: 1.75rem;
+  }
+
+  #top-wpm .stat-label {
+    font-size: .625rem;
+  }
 }
 
 /* Extra Large */
