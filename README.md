@@ -14,7 +14,7 @@ Built with:
     npm install
     npm run java:build
     ```
-    The `npm run java:build` command builds (compiles TypeScript and copies assets) the application into `backend/src/main/resources/static`.
+    The `npm run java:build` command builds the application (compiles TypeScript and copies assets) into `backend/src/main/resources/static`.
 2.  Run the backend
 
     There are several ways to run a Spring Boot application on your local machine. One way is to execute the `main` method in the `com.fabiosomaglia.backend.BackendApplication` class from your IDE.
