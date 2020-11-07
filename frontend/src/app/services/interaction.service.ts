@@ -110,15 +110,15 @@ export class InteractionService {
     let modalContent: IModalContent;
     if (this.correctWords.getValue() < 30) {
       modalContent = {
-        img: './assets/rocket-1.svg',
-        imgAlt: 'rocket',
-        title: 'This was a static fire test, right?',
+        img: './assets/typewriter.svg',
+        imgAlt: 'typewriter',
+        title: 'Keep practicing!',
         body: `Well... You type with the speed of <span class="highlight">${this.correctWords.getValue()} WPM</span> (${this.correctChars.getValue()} CPM). Your accuracy was <span class="bold">${this.accuracy.getValue()}%</span>. It could be better!`,
         showButton: true
       };
     } else {
       modalContent = {
-        img: './assets/rocket-2.svg',
+        img: './assets/rocket.svg',
         imgAlt: 'rocket',
         title: 'You\'re a Rocket!',
         body: `Nice! You type with the speed of <span class="highlight">${this.correctWords.getValue()} WPM</span> (${this.correctChars.getValue()} CPM). Your accuracy was <span class="bold">${this.accuracy.getValue()}%</span>. Keep practicing!`,
