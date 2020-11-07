@@ -1,12 +1,14 @@
 <!--<button id="open" (click)="onOpenButtonClick()">Open</button>-->
 <div id="modal-container" class="modal-container" [ngClass]="{'show': showModal}">
   <div class="modal" [ngClass]="{'show': showModal}">
-    <img src="{{ modalContent.img }}" alt="{{ modalContent.imgAlt }}" width="250"/>
-    <h2>{{ modalContent.title }}</h2>
-    <p [innerHTML]="modalContent.body"></p>
-    <div class="button-container" [ngClass]="{'hide': !modalContent.showButton}">
-      <button id="close" (click)="onCloseButtonClick()">Try again</button>
-      <p class="info">Or press the <span class="highlight-esc">Esc</span> key.</p>
-    </div>
+    <ng-template [ngIf]="modalContent">
+      <img src="{{ modalContent.img }}" alt="{{ modalContent.imgAlt }}" width="250"/>
+      <h2>{{ modalContent.title }}</h2>
+      <p [innerHTML]="modalContent.body"></p>
+      <div class="button-container" [ngClass]="{'hide': !modalContent.showButton}">
+        <button id="close" (click)="onCloseButtonClick()">Try again</button>
+        <p class="info">Or press the <span class="highlight-esc">Esc</span> key.</p>
+      </div>
+    </ng-template>
   </div>
 </div>

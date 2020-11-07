@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Word} from '../../models/Word';
 import {WordsService} from '../../services/words.service';
 import {TypedWord} from '../../models/TypedWord';
@@ -12,8 +12,6 @@ import {Key} from '../../models/Key';
   styleUrls: ['./input-box.component.css']
 })
 export class InputBoxComponent implements OnInit {
-
-  @ViewChild('testInput') testInput: ElementRef;
 
   words: Word[];
   typedWords: TypedWord[];
@@ -46,7 +44,7 @@ export class InputBoxComponent implements OnInit {
     this.retrieveWords();
   }
 
-  restartTest(): void {
+  private restartTest(): void {
     this.retrieveWords();
     this.typedWords = [];
     this.currentWord = null;
@@ -59,7 +57,7 @@ export class InputBoxComponent implements OnInit {
     this.setFocus();
   }
 
-  setFocus(): void {
+  private setFocus(): void {
     document.getElementById('test-input').focus();
     this.setCaretPosition('test-input', null);
   }
@@ -71,7 +69,6 @@ export class InputBoxComponent implements OnInit {
   private retrieveWords(): void {
     this.wordsService.getWords(10).subscribe(words => {
       this.words = words;
-      this.words.forEach(word => console.log(word));
     });
   }
 
@@ -188,8 +185,9 @@ export class InputBoxComponent implements OnInit {
    * Set the caret position
    * @param elemId id of the html element
    * @param caretPos the position of the caret
+   * @private
    */
-  setCaretPosition(elemId: string, caretPos: number): void {
+  private setCaretPosition(elemId: string, caretPos: number): void {
     if (caretPos === null) {
       caretPos = document.getElementById(elemId).textContent.length;
     }

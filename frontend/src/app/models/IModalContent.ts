@@ -1,4 +1,4 @@
-export class ModalContent {
+export interface IModalContent {
   img: string;
   imgAlt: string;
   title: string;

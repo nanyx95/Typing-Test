@@ -1,7 +1,7 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {InteractionService} from '../../services/interaction.service';
 import {Key} from '../../models/Key';
-import {ModalContent} from '../../models/ModalContent';
+import {IModalContent} from '../../models/IModalContent';
 
 @Component({
   selector: 'app-modal',
@@ -11,7 +11,7 @@ import {ModalContent} from '../../models/ModalContent';
 export class ModalComponent implements OnInit {
 
   showModal = false;
-  modalContent: ModalContent = new ModalContent();
+  modalContent: IModalContent;
 
   constructor(private interactionService: InteractionService) { }
 

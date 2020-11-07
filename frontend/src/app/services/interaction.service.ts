@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {TimerStatus} from '../models/TimerStatus';
-import {ModalContent} from '../models/ModalContent';
+import {IModalContent} from '../models/IModalContent';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class InteractionService {
   private accuracy = new BehaviorSubject<number>(0);
   private topWPM = new BehaviorSubject<number>(0);
   private testCounter = new BehaviorSubject<number>(0);
-  private modalContent = new BehaviorSubject<ModalContent>(null);
+  private modalContent = new BehaviorSubject<IModalContent>(null);
 
   constructor() {
     this.getTimerStatus()
@@ -107,34 +107,39 @@ export class InteractionService {
   }
 
   private generateModalContentWithStats(): void {
-    const modalContent: ModalContent = new ModalContent();
+    let modalContent: IModalContent;
     if (this.correctWords.getValue() < 30) {
-      modalContent.img = './assets/rocket-1.svg';
-      modalContent.imgAlt = 'rocket';
-      modalContent.title = 'This was a static fire test, right?';
-      modalContent.body = `Well... You type with the speed of <span class="highlight">${this.correctWords.getValue()} WPM</span> (${this.correctChars.getValue()} CPM). Your accuracy was <span class="bold">${this.accuracy.getValue()}%</span>. It could be better!`;
-      modalContent.showButton = true;
+      modalContent = {
+        img: './assets/rocket-1.svg',
+        imgAlt: 'rocket',
+        title: 'This was a static fire test, right?',
+        body: `Well... You type with the speed of <span class="highlight">${this.correctWords.getValue()} WPM</span> (${this.correctChars.getValue()} CPM). Your accuracy was <span class="bold">${this.accuracy.getValue()}%</span>. It could be better!`,
+        showButton: true
+      };
     } else {
-      modalContent.img = './assets/rocket-2.svg';
-      modalContent.imgAlt = 'rocket';
-      modalContent.title = 'You\'re a Rocket!';
-      modalContent.body = `Nice! You type with the speed of <span class="highlight">${this.correctWords.getValue()} WPM</span> (${this.correctChars.getValue()} CPM). Your accuracy was <span class="bold">${this.accuracy.getValue()}%</span>. Keep practicing!`;
-      modalContent.showButton = true;
+      modalContent = {
+        img: './assets/rocket-2.svg',
+        imgAlt: 'rocket',
+        title: 'You\'re a Rocket!',
+        body: `Nice! You type with the speed of <span class="highlight">${this.correctWords.getValue()} WPM</span> (${this.correctChars.getValue()} CPM). Your accuracy was <span class="bold">${this.accuracy.getValue()}%</span>. Keep practicing!`,
+        showButton: true
+      };
     }
     this.modalContent.next(modalContent);
   }
 
   private androidModalContent(): void {
-    const modalContent: ModalContent = new ModalContent();
-    modalContent.img = './assets/android.svg';
-    modalContent.imgAlt = 'android device';
-    modalContent.title = 'Sorry, Android is not supported :(';
-    modalContent.body = `Due to abnormal behavior of Android devices detecting keystrokes, Android is not currently supported.<br><br>More info <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=118639" target="_blank">here</a>.`;
-    modalContent.showButton = false;
+    const modalContent = {
+      img: './assets/android.svg',
+      imgAlt: 'android device',
+      title: 'Sorry, Android is not supported :(',
+      body: `Due to abnormal behavior of Android devices detecting keystrokes, Android is not currently supported.<br><br>More info <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=118639" target="_blank">here</a>.`,
+      showButton: false
+    };
     this.modalContent.next(modalContent);
   }
 
-  getModalContent(): Observable<ModalContent> {
+  getModalContent(): Observable<IModalContent> {
     return this.modalContent.asObservable();
   }
 
