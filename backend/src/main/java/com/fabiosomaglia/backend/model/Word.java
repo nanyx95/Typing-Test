@@ -1,4 +1,4 @@
-package com.fabiosomaglia.backend.bean;
+package com.fabiosomaglia.backend.model;
 
 import lombok.Data;
 import lombok.NonNull;

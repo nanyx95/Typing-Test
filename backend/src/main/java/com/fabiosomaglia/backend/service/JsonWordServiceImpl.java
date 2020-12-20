@@ -1,7 +1,7 @@
 package com.fabiosomaglia.backend.service;
 
-import com.fabiosomaglia.backend.bean.JsonWord;
-import com.fabiosomaglia.backend.bean.Word;
+import com.fabiosomaglia.backend.model.JsonWord;
+import com.fabiosomaglia.backend.model.Word;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;

@@ -1,6 +1,6 @@
 package com.fabiosomaglia.backend.controller;
 
-import com.fabiosomaglia.backend.bean.Word;
+import com.fabiosomaglia.backend.model.Word;
 import com.fabiosomaglia.backend.service.WordService;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;

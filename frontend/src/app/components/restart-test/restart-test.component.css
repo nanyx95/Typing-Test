@@ -1,11 +1,11 @@
-.restart-container {
-  display: flex;
-  flex-direction: column;
+.btn-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
   align-items: center;
-  justify-content: center;
 }
 
-button {
+button#restart {
   font-size: 1rem;
   font-weight: 500;
   background-color: #5a67d8;
@@ -18,9 +18,32 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+button:hover#restart {
   background-color: #667eea;
   border-color: #4c51bf;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+button#ranking {
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: white;
+  border: 0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+  color: #667eea;
+  margin-top: 3rem;
+  padding: 10px 25px;
+  cursor: pointer;
+}
+
+button:hover#ranking {
+  background-color: #eef2ff;
+  border-color: transparent;
   outline: 2px solid transparent;
   outline-offset: 2px;
   transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;

@@ -1,6 +1,6 @@
 package com.fabiosomaglia.backend.service;
 
-import com.fabiosomaglia.backend.bean.Word;
+import com.fabiosomaglia.backend.model.Word;
 import com.github.dhiraj072.randomwordgenerator.RandomWordGenerator;
 import org.springframework.stereotype.Service;
 
