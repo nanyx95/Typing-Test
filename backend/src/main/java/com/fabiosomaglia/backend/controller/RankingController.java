@@ -4,6 +4,7 @@ import com.fabiosomaglia.backend.model.Ranking;
 import com.fabiosomaglia.backend.repository.RankingRepository;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -30,6 +31,16 @@ public class RankingController {
 	@PostMapping(path = "save")
 	public void saveRanking(@RequestBody Ranking ranking) {
 		rankingRepository.save(ranking);
+	}
+
+	@GetMapping(path = "top")
+	public List<Ranking> getTopThree() {
+		return rankingRepository.findTop3ByOrderByWpmDesc().orElse(null);
+	}
+
+	@GetMapping(path = "pos/{uuid}")
+	public Integer getPositionById(@PathVariable("uuid") UUID id) {
+		return rankingRepository.findPositionById(id).orElse(null);
 	}
 
 }

@@ -14,7 +14,7 @@ import java.util.UUID;
 public class Ranking {
 
 	@Id
-	@Type(type="uuid-char")
+	@Type(type = "org.hibernate.type.UUIDBinaryType")
 	private UUID id;
 
 	@Column(name = "USERNAME", nullable = false, length = 8)
