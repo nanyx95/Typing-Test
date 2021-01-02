@@ -8,7 +8,7 @@ import { TimerComponent } from './components/timer/timer.component';
 import { StatsComponent } from './components/stats/stats.component';
 import {WordsService} from './services/words.service';
 import { ModalComponent } from './components/modal/modal.component';
-import { RestartTestComponent } from './components/restart-test/restart-test.component';
+import { CtaBtnComponent } from './components/cta-btn/cta-btn.component';
 import {FormsModule} from '@angular/forms';
 
 @NgModule({
@@ -18,7 +18,7 @@ import {FormsModule} from '@angular/forms';
     TimerComponent,
     StatsComponent,
     ModalComponent,
-    RestartTestComponent
+    CtaBtnComponent
   ],
     imports: [
         BrowserModule,

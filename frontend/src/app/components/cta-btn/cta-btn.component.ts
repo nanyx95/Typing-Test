@@ -3,11 +3,11 @@ import {InteractionService} from '../../services/interaction.service';
 import {Key} from '../../models/Key';
 
 @Component({
-  selector: 'app-restart-test',
-  templateUrl: './restart-test.component.html',
-  styleUrls: ['./restart-test.component.css']
+  selector: 'app-cta-btn',
+  templateUrl: './cta-btn.component.html',
+  styleUrls: ['./cta-btn.component.css']
 })
-export class RestartTestComponent implements OnInit {
+export class CtaBtnComponent implements OnInit {
 
   @Output() openRankingModalEvent = new EventEmitter();
 

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RestartTestComponent } from './restart-test.component';
+import { CtaBtnComponent } from './cta-btn.component';
 
 describe('RestartTestComponent', () => {
-  let component: RestartTestComponent;
-  let fixture: ComponentFixture<RestartTestComponent>;
+  let component: CtaBtnComponent;
+  let fixture: ComponentFixture<CtaBtnComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RestartTestComponent ]
+      declarations: [ CtaBtnComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RestartTestComponent);
+    fixture = TestBed.createComponent(CtaBtnComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
