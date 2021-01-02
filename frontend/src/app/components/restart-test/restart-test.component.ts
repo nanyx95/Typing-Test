@@ -1,4 +1,4 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, HostListener, OnInit, Output, EventEmitter} from '@angular/core';
 import {InteractionService} from '../../services/interaction.service';
 import {Key} from '../../models/Key';
 
@@ -8,6 +8,8 @@ import {Key} from '../../models/Key';
   styleUrls: ['./restart-test.component.css']
 })
 export class RestartTestComponent implements OnInit {
+
+  @Output() openRankingModalEvent = new EventEmitter();
 
   constructor(private interactionService: InteractionService) { }
 
@@ -24,4 +26,9 @@ export class RestartTestComponent implements OnInit {
   onRestartButtonClick(): void {
     this.interactionService.incrTestCounter();
   }
+
+  onRankingButtonClick(): void {
+    this.openRankingModalEvent.emit();
+  }
+
 }

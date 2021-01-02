@@ -29,8 +29,8 @@ public class RankingController {
 	}
 
 	@PostMapping(path = "save")
-	public void saveRanking(@RequestBody Ranking ranking) {
-		rankingRepository.save(ranking);
+	public Ranking saveRanking(@RequestBody Ranking ranking) {
+		return rankingRepository.save(ranking);
 	}
 
 	@GetMapping(path = "top")

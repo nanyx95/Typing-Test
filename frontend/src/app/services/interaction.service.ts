@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {TimerStatus} from '../models/TimerStatus';
-import {IModalContent} from '../models/IModalContent';
 
 @Injectable({
   providedIn: 'root'
@@ -15,20 +14,14 @@ export class InteractionService {
   private accuracy = new BehaviorSubject<number>(0);
   private topWPM = new BehaviorSubject<number>(0);
   private testCounter = new BehaviorSubject<number>(0);
-  private modalContent = new BehaviorSubject<IModalContent>(null);
 
   constructor() {
     this.getTimerStatus()
       .subscribe(status => {
         if (status === TimerStatus.OFF) {
-          this.generateModalContentWithStats();
           this.saveTopWPMToLocalStorage();
         }
       });
-    // detect Android device
-    if (/Android/i.test(navigator.userAgent)) {
-      this.androidModalContent();
-    }
     this.retrieveTopWPMFromLocalStorage();
   }
 
@@ -104,43 +97,6 @@ export class InteractionService {
 
   getTestCounter(): Observable<number> {
     return this.testCounter.asObservable();
-  }
-
-  private generateModalContentWithStats(): void {
-    let modalContent: IModalContent;
-    if (this.correctWords.getValue() < 30) {
-      modalContent = {
-        img: './assets/typewriter.svg',
-        imgAlt: 'typewriter',
-        title: 'Keep practicing!',
-        body: `Well... You type with the speed of <span class="highlight">${this.correctWords.getValue()} WPM</span> (${this.correctChars.getValue()} CPM). Your accuracy was <span class="bold">${this.accuracy.getValue()}%</span>. It could be better!`,
-        showButton: true
-      };
-    } else {
-      modalContent = {
-        img: './assets/rocket.svg',
-        imgAlt: 'rocket',
-        title: 'You\'re a Rocket!',
-        body: `Nice! You type with the speed of <span class="highlight">${this.correctWords.getValue()} WPM</span> (${this.correctChars.getValue()} CPM). Your accuracy was <span class="bold">${this.accuracy.getValue()}%</span>. Keep practicing!`,
-        showButton: true
-      };
-    }
-    this.modalContent.next(modalContent);
-  }
-
-  private androidModalContent(): void {
-    const modalContent = {
-      img: './assets/android.svg',
-      imgAlt: 'android device',
-      title: 'Sorry, Android is not supported :(',
-      body: `Due to abnormal behavior of Android devices detecting keystrokes, Android is not currently supported.<br><br>More info <a href="https://bugs.chromium.org/p/chromium/issues/detail?id=118639" target="_blank">here</a>.`,
-      showButton: false
-    };
-    this.modalContent.next(modalContent);
-  }
-
-  getModalContent(): Observable<IModalContent> {
-    return this.modalContent.asObservable();
   }
 
 }

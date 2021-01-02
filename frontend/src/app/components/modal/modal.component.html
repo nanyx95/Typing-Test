@@ -1,14 +1,69 @@
 <button id="open" (click)="onOpenButtonClick()">Open</button>
 <div id="modal-container" class="modal-container" [ngClass]="{'show': showModal}">
-  <div class="modal" [ngClass]="{'show': showModal}">
-    <ng-template [ngIf]="modalContent">
-      <img src="{{ modalContent.img }}" alt="{{ modalContent.imgAlt }}" width="250"/>
-      <h2>{{ modalContent.title }}</h2>
-      <p [innerHTML]="modalContent.body"></p>
-      <div class="button-container" [ngClass]="{'hide': !modalContent.showButton}">
-        <button id="close" (click)="onCloseButtonClick()">Try again</button>
-        <p class="info">Or press the <span class="highlight-esc">Esc</span> key.</p>
-      </div>
-    </ng-template>
+  <div class="modal">
+    <ng-container [ngSwitch]="activeLayout">
+      <ng-container *ngSwitchCase="1">
+        <img src="{{ modalContent.img }}" alt="{{ modalContent.imgAlt }}" width="250"/>
+        <h2>{{ modalContent.title }}</h2>
+        <p [innerHTML]="modalContent.body"></p>
+        <div class="btn-container" [ngClass]="(ranking === null || correctWords > ranking.wpm) ? 'grid' : 'flex'" *ngIf="modalContent.showBtnTryAgain">
+          <button class="btn-purple" (click)="onTryAgainButtonClick()">Try again</button>
+          <button class="btn-white" (click)="goToInputLayout()" *ngIf="ranking === null || (ranking !== null && correctWords > ranking.wpm)">Save the score</button>
+          <p class="info">Or press the <span class="highlight-esc">Esc</span> key.</p>
+        </div>
+      </ng-container>
+      <ng-container *ngSwitchCase="2">
+        <img src="./assets/cloud.svg" alt="cloud" width="250"/>
+        <h2>Save your score</h2>
+        <p>Congratulations on reaching {{ correctWords }} WPM!</p>
+        <div class="input-container">
+          <label for="username">Write your name:</label>
+          <div>
+            <input type="text" required maxlength="8" pattern="[a-zA-Z0-9]+" [(ngModel)]="usernameInputValue" name="username" #username="ngModel" id="username" size="8">
+            <div class="input-error" *ngIf="username.touched && !username.valid">
+              <div *ngIf="username.errors.required">Name is required.</div>
+              <div *ngIf="username.errors.pattern">Alphanumeric characters only.</div>
+            </div>
+          </div>
+        </div>
+        <div class="btn-container grid col-gap">
+          <button class="btn-white" (click)="goToStatsLayout()">Back</button>
+          <button id="save-btn" class="btn-purple" [ngClass]="{'disabled': !username.valid}" (click)="onSaveScoreButtonClick()">Save</button>
+        </div>
+      </ng-container>
+      <ng-container *ngSwitchCase="3">
+        <img src="./assets/cup.svg" alt="cup" width="250"/>
+        <h2>Ranking</h2>
+        <table *ngIf="rankingToDisplay">
+          <thead>
+            <tr>
+              <th>Position</th>
+              <th>User</th>
+              <th>WPM</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let score of rankingToDisplay; let i = index">
+              <tr [ngClass]="{'highlights-score': ranking?.id === score.id}">
+                <td *ngIf="i <= 2">{{ i + 1 }}</td>
+                <td *ngIf="i === 3">{{ userPosition }}</td>
+                <td>{{ score.user }}</td>
+                <td>{{ score.wpm }}</td>
+                <td>{{ score.testDate | date:'dd/MM/yyyy' }}</td>
+              </tr>
+              <tr class="blank_row" *ngIf="i === 2 && rankingToDisplay.length === 4">
+                <td colspan="4"></td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+        <p *ngIf="!rankingToDisplay">The saved scores could not be retrieved. Try later.</p>
+        <div class="btn-container flex">
+          <button class="btn-purple" (click)="onTryAgainButtonClick()">Close</button>
+          <p class="info">Or press the <span class="highlight-esc">Esc</span> key.</p>
+        </div>
+      </ng-container>
+    </ng-container>
   </div>
 </div>

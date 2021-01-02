@@ -9,6 +9,7 @@ import { StatsComponent } from './components/stats/stats.component';
 import {WordsService} from './services/words.service';
 import { ModalComponent } from './components/modal/modal.component';
 import { RestartTestComponent } from './components/restart-test/restart-test.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,10 +20,11 @@ import { RestartTestComponent } from './components/restart-test/restart-test.com
     ModalComponent,
     RestartTestComponent
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        FormsModule
+    ],
   providers: [WordsService],
   bootstrap: [AppComponent]
 })

@@ -9,7 +9,7 @@
       <app-timer id="timer"></app-timer>
     </div>
     <app-input-box id="input-box"></app-input-box>
-    <app-restart-test></app-restart-test>
+    <app-restart-test (openRankingModalEvent)="modalComponent.goToRankingLayout()"></app-restart-test>
   </main>
   <footer class="footer-wrapper">
     <p class="footer">
@@ -27,4 +27,4 @@
     </p>
   </footer>
 </div>
-<app-modal></app-modal>
+<app-modal #modalComponent></app-modal>

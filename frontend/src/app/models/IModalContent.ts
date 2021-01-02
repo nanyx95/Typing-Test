@@ -3,5 +3,5 @@ export interface IModalContent {
   imgAlt: string;
   title: string;
   body: string;
-  showButton: boolean;
+  showBtnTryAgain: boolean;
 }
