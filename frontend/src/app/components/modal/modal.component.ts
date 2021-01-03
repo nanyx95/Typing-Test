@@ -1,7 +1,7 @@
 import {Component, HostListener, OnInit} from '@angular/core';
 import {InteractionService} from '../../services/interaction.service';
 import {Key} from '../../models/Key';
-import {IModalContent} from '../../models/IModalContent';
+import {ITestResult} from '../../models/ITestResult';
 import {DbService} from '../../services/db.service';
 import {Ranking} from '../../models/Ranking';
 import {TimerStatus} from '../../models/TimerStatus';
@@ -29,7 +29,7 @@ export class ModalComponent implements OnInit {
 
   showModal = false;
   activeLayout = ModalActiveLayout.NONE;
-  modalContent: IModalContent;
+  testResult: ITestResult;
   ranking: Ranking;
   private topThreeRanking: Ranking[];
   userPosition: number;
@@ -66,7 +66,7 @@ export class ModalComponent implements OnInit {
   }
 
   private androidModalContent(): void {
-    this.modalContent = {
+    this.testResult = {
       img: './assets/android.svg',
       imgAlt: 'android device',
       title: 'Sorry, Android is not supported :(',
@@ -130,7 +130,7 @@ export class ModalComponent implements OnInit {
 
   private generateStats(): void {
     if (this.correctWords < 30) {
-      this.modalContent = {
+      this.testResult = {
         img: './assets/typewriter.svg',
         imgAlt: 'typewriter',
         title: 'Keep practicing!',
@@ -138,7 +138,7 @@ export class ModalComponent implements OnInit {
         showBtnTryAgain: true
       };
     } else {
-      this.modalContent = {
+      this.testResult = {
         img: './assets/rocket.svg',
         imgAlt: 'rocket',
         title: 'You\'re a Rocket!',

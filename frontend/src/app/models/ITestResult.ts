@@ -1,4 +1,4 @@
-export interface IModalContent {
+export interface ITestResult {
   img: string;
   imgAlt: string;
   title: string;

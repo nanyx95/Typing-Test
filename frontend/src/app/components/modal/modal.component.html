@@ -3,10 +3,10 @@
   <div class="modal">
     <ng-container [ngSwitch]="activeLayout">
       <div *ngSwitchCase="1" @animate>
-        <img src="{{ modalContent.img }}" alt="{{ modalContent.imgAlt }}" width="250"/>
-        <h2>{{ modalContent.title }}</h2>
-        <p [innerHTML]="modalContent.body"></p>
-        <div class="btn-container" [ngClass]="(ranking === null || correctWords > ranking.wpm) ? 'grid' : 'flex'" *ngIf="modalContent.showBtnTryAgain">
+        <img src="{{ testResult.img }}" alt="{{ testResult.imgAlt }}" width="250"/>
+        <h2>{{ testResult.title }}</h2>
+        <p [innerHTML]="testResult.body"></p>
+        <div class="btn-container" [ngClass]="(ranking === null || correctWords > ranking.wpm) ? 'grid' : 'flex'" *ngIf="testResult.showBtnTryAgain">
           <button class="btn-purple" (click)="onTryAgainButtonClick()">Try again</button>
           <button class="btn-white" (click)="goToInputLayout()" *ngIf="ranking === null || (ranking !== null && correctWords > ranking.wpm)">Save the score</button>
           <p class="info">Or press the <span class="highlight-esc">Esc</span> key.</p>
