@@ -1,8 +1,8 @@
-<button id="open" (click)="onOpenButtonClick()">Open</button>
+<!--<button id="open" (click)="onOpenButtonClick()">Open</button>-->
 <div id="modal-container" class="modal-container" [ngClass]="{'show': showModal}">
   <div class="modal">
     <ng-container [ngSwitch]="activeLayout">
-      <ng-container *ngSwitchCase="1">
+      <div *ngSwitchCase="1" @animate>
         <img src="{{ modalContent.img }}" alt="{{ modalContent.imgAlt }}" width="250"/>
         <h2>{{ modalContent.title }}</h2>
         <p [innerHTML]="modalContent.body"></p>
@@ -11,8 +11,8 @@
           <button class="btn-white" (click)="goToInputLayout()" *ngIf="ranking === null || (ranking !== null && correctWords > ranking.wpm)">Save the score</button>
           <p class="info">Or press the <span class="highlight-esc">Esc</span> key.</p>
         </div>
-      </ng-container>
-      <ng-container *ngSwitchCase="2">
+      </div>
+      <div *ngSwitchCase="2" @animate>
         <img src="./assets/cloud.svg" alt="cloud" width="250"/>
         <h2>Save your score</h2>
         <p>Congratulations on reaching {{ correctWords }} WPM!</p>
@@ -26,12 +26,12 @@
             </div>
           </div>
         </div>
-        <div class="btn-container grid col-gap">
+        <div class="btn-container grid">
           <button class="btn-white" (click)="goToStatsLayout()">Back</button>
           <button id="save-btn" class="btn-purple" [ngClass]="{'disabled': !username.valid}" (click)="onSaveScoreButtonClick()">Save</button>
         </div>
-      </ng-container>
-      <ng-container *ngSwitchCase="3">
+      </div>
+      <div *ngSwitchCase="3" @animate>
         <img src="./assets/cup.svg" alt="cup" width="250"/>
         <h2>Ranking</h2>
         <table *ngIf="rankingToDisplay">
@@ -50,7 +50,7 @@
                 <td *ngIf="i === 3">{{ userPosition }}</td>
                 <td>{{ score.user }}</td>
                 <td>{{ score.wpm }}</td>
-                <td>{{ score.testDate | date:'dd/MM/yyyy' }}</td>
+                <td>{{ score.testDate | date:'dd･MM･yyyy' }}</td>
               </tr>
               <tr class="blank_row" *ngIf="i === 2 && rankingToDisplay.length === 4">
                 <td colspan="4"></td>
@@ -63,7 +63,7 @@
           <button class="btn-purple" (click)="onTryAgainButtonClick()">Close</button>
           <p class="info">Or press the <span class="highlight-esc">Esc</span> key.</p>
         </div>
-      </ng-container>
+      </div>
     </ng-container>
   </div>
 </div>

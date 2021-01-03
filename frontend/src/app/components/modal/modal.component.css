@@ -32,6 +32,7 @@
   height: 100%;
   width: 100%;
   text-align: center;
+  min-height: 425px;
 }
 
 .modal h2 {
@@ -68,13 +69,10 @@
 
 .btn-container.grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-items: center;
-  align-items: center;
-}
-
-.btn-container.grid.col-gap {
+  grid-template-columns: repeat(2, auto);
   grid-column-gap: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
 button.btn-purple {
@@ -167,8 +165,13 @@ input[type=text] {
   background-color: white;
   border-radius: 0.375rem;
   padding: 4px 6px;
-  font-size: 0.875rem;
-  line-height: 1.25rem;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  outline: 0;
+}
+
+input[type=text]:focus {
+  border-color: #5456E3;
 }
 
 #username.ng-touched.ng-invalid {
@@ -196,6 +199,10 @@ th {
   letter-spacing: .025em;
 }
 
+td {
+  white-space: nowrap;
+}
+
 .highlights-score>td {
   color: #5456E3;
 }
@@ -220,5 +227,10 @@ th {
     height: auto;
     width: 600px;
     max-width: 100%;
+  }
+
+  input[type=text] {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
   }
 }

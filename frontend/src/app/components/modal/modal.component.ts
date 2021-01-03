@@ -7,11 +7,23 @@ import {Ranking} from '../../models/Ranking';
 import {TimerStatus} from '../../models/TimerStatus';
 import {ModalActiveLayout} from '../../models/ModalActiveLayout';
 import {forkJoin} from 'rxjs';
+import {trigger, transition, style, animate} from '@angular/animations';
 
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.css']
+  styleUrls: ['./modal.component.css'],
+  animations: [
+    trigger('animate', [
+      transition(':enter', [
+        style({ opacity: 0 }),
+        animate('250ms', style({ opacity: 1 })),
+      ]),
+      transition(':leave', [
+        style({ opacity: 0 }),
+      ]),
+    ])
+  ]
 })
 export class ModalComponent implements OnInit {
 
@@ -74,9 +86,10 @@ export class ModalComponent implements OnInit {
     }
   }
 
+  // only for testing
   onOpenButtonClick(): void {
-    this.activeLayout = ModalActiveLayout.STATS;
-    this.showModal = true;
+    this.correctWords = 27;
+    this.generateStats();
   }
 
   onTryAgainButtonClick(): void {
