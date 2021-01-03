@@ -65,6 +65,10 @@ export class ModalComponent implements OnInit {
     this.retrieveAllInfoFromDb();
   }
 
+  /**
+   * Show modal in Android devices
+   * @private
+   */
   private androidModalContent(): void {
     this.testResult = {
       img: './assets/android.svg',
@@ -97,6 +101,9 @@ export class ModalComponent implements OnInit {
     this.showModal = false;
   }
 
+  /**
+   * Save the test result
+   */
   onSaveScoreButtonClick(): void {
     const scoreToSave: Ranking = {
       id: localStorage.getItem('user-uuid'),
@@ -128,6 +135,10 @@ export class ModalComponent implements OnInit {
     this.showModal = true;
   }
 
+  /**
+   * Generate the test results
+   * @private
+   */
   private generateStats(): void {
     if (this.correctWords < 30) {
       this.testResult = {
@@ -150,6 +161,10 @@ export class ModalComponent implements OnInit {
     this.showModal = true;
   }
 
+  /**
+   * Generate the leaderboard
+   * @private
+   */
   private generateRankingToDisplay(): void {
     this.rankingToDisplay = this.topThreeRanking;
     if (this.userPosition > 3) {
@@ -158,6 +173,10 @@ export class ModalComponent implements OnInit {
     this.rankingToDisplay = this.rankingToDisplay?.sort((obj1, obj2) => (obj1.wpm > obj2.wpm ? -1 : 1));
   }
 
+  /**
+   * Retrieve all the data in the database
+   * @private
+   */
   private retrieveAllInfoFromDb(): void {
     forkJoin([
       this.dbService.getRankingById(),

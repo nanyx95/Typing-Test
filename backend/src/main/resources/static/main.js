@@ -317,6 +317,10 @@ class ModalComponent {
         // retrieve ranking from db
         this.retrieveAllInfoFromDb();
     }
+    /**
+     * Show modal in Android devices
+     * @private
+     */
     androidModalContent() {
         this.testResult = {
             img: './assets/android.svg',
@@ -344,6 +348,9 @@ class ModalComponent {
         this.interactionService.incrTestCounter();
         this.showModal = false;
     }
+    /**
+     * Save the test result
+     */
     onSaveScoreButtonClick() {
         const scoreToSave = {
             id: localStorage.getItem('user-uuid'),
@@ -372,6 +379,10 @@ class ModalComponent {
         this.activeLayout = _models_ModalActiveLayout__WEBPACK_IMPORTED_MODULE_3__["ModalActiveLayout"].RANKING;
         this.showModal = true;
     }
+    /**
+     * Generate the test results
+     * @private
+     */
     generateStats() {
         if (this.correctWords < 30) {
             this.testResult = {
@@ -394,6 +405,10 @@ class ModalComponent {
         this.activeLayout = _models_ModalActiveLayout__WEBPACK_IMPORTED_MODULE_3__["ModalActiveLayout"].STATS;
         this.showModal = true;
     }
+    /**
+     * Generate the leaderboard
+     * @private
+     */
     generateRankingToDisplay() {
         var _a;
         this.rankingToDisplay = this.topThreeRanking;
@@ -402,6 +417,10 @@ class ModalComponent {
         }
         this.rankingToDisplay = (_a = this.rankingToDisplay) === null || _a === void 0 ? void 0 : _a.sort((obj1, obj2) => (obj1.wpm > obj2.wpm ? -1 : 1));
     }
+    /**
+     * Retrieve all the data in the database
+     * @private
+     */
     retrieveAllInfoFromDb() {
         Object(rxjs__WEBPACK_IMPORTED_MODULE_4__["forkJoin"])([
             this.dbService.getRankingById(),
