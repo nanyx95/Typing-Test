@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.fabiosomaglia</groupId>
 	<artifactId>typing-test</artifactId>
-	<version>1.0.0</version>
+	<version>2.0.0</version>
 	<name>Typing Test</name>
 	<description>Typing Test project with Angular and Spring Boot</description>
 
