@@ -1,7 +1,5 @@
 package com.fabiosomaglia.backend.model;
 
-import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
 import java.util.UUID;
 
@@ -14,7 +12,6 @@ import java.util.UUID;
 public class Ranking {
 
 	@Id
-	@Type(type = "org.hibernate.type.UUIDBinaryType")
 	private UUID id;
 
 	@Column(name = "USERNAME", nullable = false, length = 8)
@@ -34,7 +31,6 @@ public class Ranking {
 	}
 
 	public Ranking() { }
-
 
 	public UUID getId() {
 		return id;

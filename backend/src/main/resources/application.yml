@@ -31,6 +31,6 @@ spring:
     password: ${JDBC_DATABASE_PASSWORD}
 
   jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    database-platform: org.hibernate.dialect.PostgreSQL95Dialect
     hibernate:
       ddl-auto: update
